@@ -7,6 +7,8 @@ import { AuthGuard } from './auth/auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { IngredientCreateComponent } from './ingredient/create/ingredient-create.component';
+import { IngredientListComponent } from './ingredient/list/ingredient-list.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -21,7 +23,17 @@ const routes: Routes = [
       }
     ]
   },
-  { path: 'login', component: LoginComponent }
+  {
+    path:'ingredient',
+    children: [
+      {
+        path:'create', component: IngredientCreateComponent
+      },
+      {
+        path:'list', component: IngredientListComponent
+      }
+    ]
+  },
 ];
 
 @NgModule({

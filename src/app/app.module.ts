@@ -19,6 +19,7 @@ import { AuthModule } from './auth/auth.module';
 //Import des composants
 import { HeaderComponent } from './header/header.component';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { IngredientModule } from './ingredient/ingredient.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
     AngularMaterialModule,
     HttpClientModule,
     AuthModule,
-    DashboardModule
+    DashboardModule,
+    IngredientModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
