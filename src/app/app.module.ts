@@ -13,8 +13,8 @@ import { AngularMaterialModule } from './angular-material.component';
 import { ErrorInterceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.component';
 
-//import { AuthInterceptor } from './auth/auth-interceptor';
-//import { AuthRoutingModule } from './auth/auth-routing.module';
+import { AuthInterceptor } from './auth/auth-interceptor';
+import { AuthModule } from './auth/auth.module';
 
 //Import des composants
 import { HeaderComponent } from './header/header.component';
@@ -33,11 +33,11 @@ import { DashboardModule } from './dashboard/dashboard.module';
     BrowserAnimationsModule,
     AngularMaterialModule,
     HttpClientModule,
-    //AuthRoutingModule,
+    AuthModule,
     DashboardModule
   ],
   providers: [
-    //{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
