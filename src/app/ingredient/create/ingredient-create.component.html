@@ -1,0 +1,33 @@
+<h2 style="text-align: center;">Ajout Ingrédient</h2>
+
+<div class="main-div">
+    <mat-card>
+        <form [formGroup]="formulaire" (submit)="onSavePost()">
+            <!--Nom-->
+            <mat-form-field>
+                <input matInput type="text" formControlName='name' placeholder="Nom">
+                <mat-error *ngIf="formulaire.get('name')!.invalid">Entrez un nom</mat-error>
+            </mat-form-field>
+
+            <!--Consumable-->
+            <mat-form-field>
+                <input matInput type="text" formControlName='consumable' placeholder="Consommable">
+            </mat-form-field>
+
+            <!--File-->
+            <div>
+                <button mat-stroked-button type="button" (click)=filePicker.click()>Image</button>
+                <input style="margin-left: 2rem;" type=file #filePicker (change)="onImagePicked($event)">
+            </div>
+
+            <!--Preview-->
+            <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview !== null">
+                <img [src]="imagePreview">
+            </div>
+
+            <br>
+            <!--Imput-->
+            <button mat-raised-button color="primary" type="submit">Sauvegarder ingrédient</button>
+        </form>
+    </mat-card>
+</div>
