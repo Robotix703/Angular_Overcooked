@@ -46,7 +46,7 @@ export class IngredientCreateComponent implements OnInit {
   onSavePost(){
     if(this.formulaire.invalid) return;
 
-    this.IngredientService.addFigurine(this.formulaire.value.name, this.formulaire.value.consumable, this.formulaire.value.image);
+    this.IngredientService.addIngredient(this.formulaire.value.name, this.formulaire.value.consumable, this.formulaire.value.image);
 
     this.formulaire.reset();
   }

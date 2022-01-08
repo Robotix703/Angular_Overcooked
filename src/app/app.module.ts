@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -29,7 +28,6 @@ import { IngredientModule } from './ingredient/ingredient.module';
   ],
   imports: [
     BrowserModule,
-    MatFormFieldModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
