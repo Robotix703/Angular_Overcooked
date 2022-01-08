@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -17,6 +18,7 @@ import { ErrorComponent } from './error/error.component';
 
 //Import des composants
 import { HeaderComponent } from './header/header.component';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -26,11 +28,13 @@ import { HeaderComponent } from './header/header.component';
   ],
   imports: [
     BrowserModule,
+    MatFormFieldModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
     HttpClientModule,
-    //AuthRoutingModule
+    //AuthRoutingModule,
+    DashboardModule
   ],
   providers: [
     //{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
