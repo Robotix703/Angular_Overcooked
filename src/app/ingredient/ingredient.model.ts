@@ -1,5 +1,5 @@
 export interface Ingredient {
-  id: string
+  _id: string
   name: string
   imagePath: string
   consumable: boolean

@@ -12,9 +12,11 @@ const URL_BACKEND = environment.apiURL + "ingredient/";
 
 export class IngredientService {
 
+    public ingredientLimit = -1;
+
     constructor(private http: HttpClient, private router: Router) { }
 
-    addFigurine(name: string, consumable: boolean, image: File) {
+    addIngredient(name: string, consumable: boolean, image: File) {
         const ingredientData = new FormData();
         ingredientData.append("name", name);
         ingredientData.append("consumable", consumable.toString());
@@ -26,4 +28,15 @@ export class IngredientService {
             });
     }
 
+    getIngredients(ingredientLimit: number = this.ingredientLimit) {
+        return this.http.get<{ ingredients: Ingredient[], count: number }>(URL_BACKEND + '?limit=' + ingredientLimit);
+    }
+
+    getIngredientsByName(name: string) {
+        return this.http.get<{ ingredients: Ingredient[], count: number }>(URL_BACKEND + `name?name=${name}`);
+    }
+
+    deleteIngredient(ingredientID: string) {
+        return this.http.delete(URL_BACKEND + ingredientID);
+    }
 }
