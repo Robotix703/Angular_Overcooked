@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { InstructionService } from '../instruction.service';
 
 @Component({
     selector: 'app-instruction-create',
@@ -9,7 +10,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 
 export class InstructionCreateComponent implements OnInit {
 
-    constructor(private fb: FormBuilder) { }
+    constructor(private fb: FormBuilder, public InstructionService: InstructionService) { }
 
     productForm: FormGroup = new FormGroup({});
 
@@ -55,12 +56,9 @@ export class InstructionCreateComponent implements OnInit {
     }
 
     onSavePost() {
-        console.log(this.productForm.value)
-        if (this.productForm.invalid) {
-            console.log("Invalid");
-            return;
-        }
+        if (this.productForm.invalid) return;
 
+        this.InstructionService.addInstruction(this.productForm.value.text, this.productForm.value.ingredients)
         this.productForm.reset();
     }
 }

@@ -13,4 +13,16 @@ const URL_BACKEND = environment.apiURL + "instruction/";
 export class InstructionService {
 
     constructor(private http: HttpClient, private router: Router) { }
+
+    addInstruction(text: string, ingredients: [{ingredientName: string, quantity: number}]) {
+        const instructionData = {
+            text: text,
+            ingredients: ingredients
+        }
+
+        this.http.post<Instruction>(URL_BACKEND + "/byIngredientName", instructionData)
+            .subscribe((responseData: Instruction) => {
+                this.router.navigate(["/"]);
+            });
+    }
 }
