@@ -25,4 +25,14 @@ export class RecipeService {
                 this.router.navigate(["/"]);
             });
     }
+
+    getRecipes(pageSize: number, currentPage: number){
+        const queryParams = `?pageSize=${pageSize}&currentPage=${currentPage}`;
+
+        return this.http.get<{ recipes: any, count: number }>(URL_BACKEND + queryParams);
+    }
+
+    deleteRecipe(recipeID: string){
+        return this.http.delete(URL_BACKEND + recipeID);
+    }
 }

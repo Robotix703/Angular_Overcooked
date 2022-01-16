@@ -1,0 +1,39 @@
+<div style="text-align: center;">
+  <a mat-raised-button color="primary" routerLink="/create">Créer Recette</a>
+</div>
+
+<mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+  (page)="getRecipesData($event)">
+</mat-paginator>
+
+
+<mat-accordion *ngIf="recipes.length > 0 && !isLoading">
+
+  <mat-card *ngFor="let recipe of recipes">
+    <mat-card-header>
+      <!--Titre-->
+      <mat-card-title>
+        {{ recipe.title }}
+      </mat-card-title>
+
+      <!--Sous titre-->
+      <mat-card-subtitle>
+        {{ recipe.numberOfLunch }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <!--Image-->
+    <div class="recipe-image">
+      <img [src]="recipe.imagePath" [alt]="recipe.title">
+    </div>
+
+    <!--Boutons d'actions-->
+    <mat-card-actions>
+      <a mat-button color="primary" [routerLink]="['/paint', recipe._id]">Modifier</a>
+      <a mat-button color="secondary" [routerLink]="['/edit', recipe._id]">Editer</a>
+      <button mat-button color="warn" (click)="onDelete(recipe._id)">Supprimer</button>
+    </mat-card-actions>
+  </mat-card>
+</mat-accordion>
+
+<p class="info-text mat-body-1" *ngIf="recipes.length == 0">Aucune recette</p>

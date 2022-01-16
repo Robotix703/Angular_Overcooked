@@ -5,10 +5,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { RecipeCreateComponent } from "./create/recipe-create.component";
+import { RecipeListComponent } from './list/recipe-list.component';
 
 @NgModule({
     declarations: [
-        RecipeCreateComponent
+        RecipeCreateComponent,
+        RecipeListComponent
     ],
     imports: [
         CommonModule,

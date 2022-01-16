@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  margin-top: 1rem;
+}
+
+mat-card {
+  margin-top: 1rem;
+  max-width: 20rem;
+  margin: 10px;
+}
+
+mat-accordion {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.recipe-image {
+  max-width: 100%;
+  height: auto;
+  size: cover;
+}
+
+.recipe-image img {
+  max-width: 100%;
+  height: auto;
+}

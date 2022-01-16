@@ -11,6 +11,7 @@ import { IngredientCreateComponent } from './ingredient/create/ingredient-create
 import { IngredientListComponent } from './ingredient/list/ingredient-list.component';
 import { InstructionCreateComponent } from './instruction/create/instruction-create.component';
 import { RecipeCreateComponent } from './recipe/create/recipe-create.component';
+import { RecipeListComponent } from './recipe/list/recipe-list.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -54,7 +55,7 @@ const routes: Routes = [
         path:'create', component: RecipeCreateComponent
       },
       {
-        path:'list', component: IngredientListComponent
+        path:'list', component: RecipeListComponent
       }
     ]
   }
