@@ -19,6 +19,7 @@ import { AuthModule } from './auth/auth.module';
 import { HeaderComponent } from './header/header.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { IngredientModule } from './ingredient/ingredient.module';
+import { InstructionModule } from './instruction/instruction.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { IngredientModule } from './ingredient/ingredient.module';
     HttpClientModule,
     AuthModule,
     DashboardModule,
-    IngredientModule
+    IngredientModule,
+    InstructionModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

@@ -1,0 +1,27 @@
+<mat-card>
+    <h2>Création Instruction</h2>
+    <form [formGroup]="productForm" (submit)="onSavePost()">
+        <mat-form-field appearance="fill">
+            <mat-label>Instruction</mat-label>
+            <textarea matInput formControlName='text' placeholder="Instruction"></textarea>
+        </mat-form-field>
+
+        <h2>Ingrédients</h2>
+        <div formArrayName="ingredients">
+            <div *ngFor="let item of ingredients.controls; let ingredientIndex=index" [formGroupName]="ingredientIndex">
+                <table class="example-full-width" cellspacing="30"><tr>
+                    <td><mat-form-field appearance="fill">
+                        <input matInput type="text" formControlName='ingredientName' placeholder="Nom ingrédient">
+                    </mat-form-field></td>
+                    <td><mat-form-field appearance="fill">
+                        <input matInput type="number" formControlName='quantity' placeholder="Quantité">
+                    </mat-form-field></td>
+                    <td><button mat-button color="warn" type="button" (click)="deleteIngredient(ingredientIndex)">Supprimer</button></td>
+                </tr></table>
+            </div>
+            <button mat-button color="accent" type="button" style="margin-top: 1rem; margin-bottom: 1rem;" (click)="addIngredient()">Ajouter ingrédient</button>
+        </div>
+        <hr>
+        <button mat-raised-button color="primary" style="margin-top: 1rem;" type="submit">Sauvegarder</button>
+    </form>
+</mat-card>
