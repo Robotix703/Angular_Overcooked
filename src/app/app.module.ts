@@ -21,6 +21,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { IngredientModule } from './ingredient/ingredient.module';
 import { InstructionModule } from './instruction/instruction.module';
 import { RecipeModule } from './recipe/recipe.module';
+import { MealModule } from './meal/meal.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { RecipeModule } from './recipe/recipe.module';
     DashboardModule,
     IngredientModule,
     InstructionModule,
-    RecipeModule
+    RecipeModule,
+    MealModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
