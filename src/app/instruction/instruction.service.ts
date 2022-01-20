@@ -25,4 +25,12 @@ export class InstructionService {
                 this.router.navigate(["/"]);
             });
     }
+
+    getInstructions(recipeID: string){
+        return this.http.get<{ Instructions: any }>(URL_BACKEND + `byRecipeID?recipeID=${recipeID}`);
+    }
+
+    deleteInstruction(instructionID: string){
+        return this.http.delete(URL_BACKEND + instructionID);
+    }
 }

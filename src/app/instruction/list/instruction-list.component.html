@@ -1,0 +1,43 @@
+<a mat-raised-button color="primary" style="margin: 1rem;" [routerLink]="['/instruction/create', this.recipeID]">Ajouter
+  Instruction</a>
+
+<mat-accordion *ngIf="instructions.length > 0">
+  <mat-card *ngFor="let instruc of instructions" style="max-width: 20rem;">
+    <!--Header-->
+    <mat-card-title>
+      Test
+    </mat-card-title>
+
+    <!--Paragraphe-->
+    <mat-dialog-content>
+      <div>
+        {{ instruc.text }}
+      </div>
+
+      <div>
+        <table mat-table [dataSource]="instruc.composition" class="mat-elevation-z8">
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nom </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <!--Quantity Column-->
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef> Quantité </th>
+            <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <hr>
+        <!--Supression-->
+        <button mat-raised-button color="warn" (click)="onDelete(instruc._id)">Delete</button>
+      </div>
+    </mat-dialog-content>
+  </mat-card>
+</mat-accordion>
+
+<p class="info-text mat-body-1" *ngIf="instructions.length == 0">Aucune Instructions</p>

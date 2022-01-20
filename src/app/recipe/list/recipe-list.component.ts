@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { PageEvent } from '@angular/material/paginator';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from 'src/app/auth/auth.service';
@@ -27,7 +28,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   private authStatusSub: Subscription = new Subscription();
 
-  constructor(private recipeService: RecipeService, private authService: AuthService) { }
+  constructor(private recipeService: RecipeService, private authService: AuthService, public route: ActivatedRoute) { }
 
   ngOnInit() {
     this.recipeService.getRecipes(this.pageSize, this.currentPage).subscribe((data: { recipes: Recipe[], count: number }) => {
