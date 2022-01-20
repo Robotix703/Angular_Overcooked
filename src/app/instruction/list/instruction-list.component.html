@@ -1,5 +1,4 @@
-<a mat-raised-button color="primary" style="margin: 1rem;" [routerLink]="['/instruction/create', this.recipeID]">Ajouter
-  Instruction</a>
+<a mat-raised-button color="primary" style="margin: 1rem;" [routerLink]="['/instruction/create/', this.recipeID]">Ajouter Instruction</a>
 
 <mat-accordion *ngIf="instructions.length > 0">
   <mat-card *ngFor="let instruc of instructions" style="max-width: 20rem;">

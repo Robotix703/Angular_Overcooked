@@ -42,7 +42,7 @@ const routes: Routes = [
     path:'instruction',
     children: [
       {
-        path:'create', component: InstructionCreateComponent
+        path:'create/:recipeID', component: InstructionCreateComponent
       },
       {
         path:'list/:recipeID', component: InstructionListComponent

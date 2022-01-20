@@ -14,10 +14,11 @@ export class InstructionService {
 
     constructor(private http: HttpClient, private router: Router) { }
 
-    addInstruction(text: string, ingredients: [{ingredientName: string, quantity: number}]) {
+    addInstruction(text: string, ingredients: [{ingredientName: string, quantity: number}], recipeID: string) {
         const instructionData = {
             text: text,
-            ingredients: ingredients
+            ingredients: ingredients,
+            recipeID: recipeID
         }
 
         this.http.post<Instruction>(URL_BACKEND + "/byIngredientName", instructionData)
