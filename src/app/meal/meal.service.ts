@@ -13,4 +13,11 @@ const URL_BACKEND = environment.apiURL + "meal/";
 export class MealService {
 
     constructor(private http: HttpClient, private router: Router) { }
+
+    createMeal(recipeID: string, numberOfLunchPlanned: number) {
+        this.http.post<Meal>(URL_BACKEND, { recipeID: recipeID, numberOfLunchPlanned: numberOfLunchPlanned.toString() })
+            .subscribe((responseData: Meal) => {
+                this.router.navigate(["/"]);
+            });
+    }
 }
