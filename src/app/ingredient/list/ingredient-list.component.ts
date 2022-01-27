@@ -1,7 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/auth/auth.service';
 import { Ingredient } from '../ingredient.model';
 import { IngredientService } from '../ingredient.service';
 
@@ -11,38 +9,28 @@ import { IngredientService } from '../ingredient.service';
   styleUrls: ['./ingredient-list.component.css']
 })
 
-export class IngredientListComponent implements OnInit, OnDestroy {
+export class IngredientListComponent implements OnInit {
 
   ingredients: Ingredient[] = [];
   ingredientLimit: Number = 100;
   totalIngredient: Number = 0;
 
-  private ingredientsSub: Subscription = new Subscription;
-
   constructor(
-    private authService: AuthService, 
     public route: ActivatedRoute,
     public IngredientService: IngredientService) { }
 
   ngOnInit() {
-    this.IngredientService.getIngredients()
-      .subscribe((fetchedData) => {
-        this.ingredients = fetchedData.ingredients;
-      });
+    this.getIngredients();
   }
 
   onDelete(ingredient: Ingredient) {
-    this.IngredientService.deleteIngredient(ingredient._id)
-    .subscribe(() => {
-      this.IngredientService.getIngredients()
-      .subscribe((fetchedData) => {
-        this.ingredients = fetchedData.ingredients;
+
+    if (this.clickMethod(ingredient.name)) {
+      this.IngredientService.deleteIngredient(ingredient._id)
+      .subscribe(() => {
+        this.getIngredients();
       });
-    });
-  }
-
-  ngOnDestroy() {
-
+    }
   }
 
   updateLimit(limit: number){
@@ -54,5 +42,16 @@ export class IngredientListComponent implements OnInit, OnDestroy {
     .subscribe((fetchedData) => {
       this.ingredients = fetchedData.ingredients;
     });
+  }
+
+  clickMethod(name: string) {
+    return confirm("Confirmez la suppression de " + name);
+  }
+
+  getIngredients(){
+    this.IngredientService.getIngredients()
+      .subscribe((fetchedData) => {
+        this.ingredients = fetchedData.ingredients;
+      });
   }
 }
