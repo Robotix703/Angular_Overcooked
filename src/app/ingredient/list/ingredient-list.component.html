@@ -32,8 +32,8 @@
             <!--Consumable-->
             <mat-dialog-content>
                 <div class="row">
-                    <div>
-                        {{ ingredient.consumable }}
+                    <div *ngIf="ingredient.consumable">
+                        Consommable
                     </div>
                     <div>
                         <hr>
