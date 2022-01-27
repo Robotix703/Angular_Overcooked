@@ -15,3 +15,14 @@ mat-accordion {
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.ingredient-image {
+  max-width: 100%;
+  height: auto;
+  size: cover;
+}
+
+.ingredient-image img {
+  max-width: 100%;
+  height: auto;
+}

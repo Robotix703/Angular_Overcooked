@@ -25,6 +25,10 @@
             <mat-card-title style="margin-bottom: 1rem;">
                 {{ ingredient.name }}
             </mat-card-title>
+            <!--Image-->
+            <div class="ingredient-image">
+                <img [src]="ingredient.imagePath" [alt]="ingredient.name">
+            </div>
             <!--Consumable-->
             <mat-dialog-content>
                 <div class="row">
