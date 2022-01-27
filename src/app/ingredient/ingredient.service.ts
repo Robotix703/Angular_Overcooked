@@ -24,7 +24,7 @@ export class IngredientService {
 
         this.http.post<Ingredient>(URL_BACKEND, ingredientData)
             .subscribe((responseData: Ingredient) => {
-                this.router.navigate(["/"]);
+                this.router.navigate(["/ingredient/list"]);
             });
     }
 
