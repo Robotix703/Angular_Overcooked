@@ -5,10 +5,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { MealCreateComponent } from './create/meal-create.component';
+import { MealListComponent } from './list/meal-list.component';
 
 @NgModule({
     declarations: [
-        MealCreateComponent
+        MealCreateComponent,
+        MealListComponent
     ],
     imports: [
         CommonModule,

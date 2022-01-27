@@ -3,3 +3,12 @@ export interface Meal {
     recipeID: string
     numberOfLunchPlanned: number
 }
+
+export interface PrettyMeal {
+    _id: string,
+    title: string,
+    numberOfLunch: number,
+    imagePath: string,
+    state: boolean,
+    background: string
+}

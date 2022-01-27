@@ -1,0 +1,29 @@
+<a mat-button color="primary" routerLink="/meal/create">Ajouter repas</a>
+
+<mat-accordion *ngIf="meals.length > 0">
+    <mat-card *ngFor="let meal of meals" [ngStyle]="{'background-color': meal.background}">
+        <mat-card-header>
+            <!--Titre-->
+            <mat-card-title>
+                {{ meal.title }}
+            </mat-card-title>
+
+            <!--Sous titre-->
+            <mat-card-subtitle>
+                {{ meal.numberOfLunch }}
+            </mat-card-subtitle>
+        </mat-card-header>
+
+        <!--Image-->
+        <div class="meal-image">
+            <img [src]="meal.imagePath" [alt]="meal.title">
+        </div>
+
+        <!--Boutons d'actions-->
+        <mat-card-actions>
+            <a mat-button color="secondary" *ngIf="meal.state" (click)="consume(meal._id)">Consommer</a>
+        </mat-card-actions>
+    </mat-card>
+</mat-accordion>
+
+<p class="info-text mat-body-1" *ngIf="meals.length == 0">Aucun Repas</p>
