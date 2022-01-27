@@ -32,8 +32,8 @@ export class AuthService {
     return this.isAuthenticated;
   }
 
-  createUser(email: string, password: string, inviteCode: string) {
-    const authData = { email: email, password: password, invitationCode: inviteCode };
+  createUser(email: string, password: string, inviteCode: string, phoneNumber: string) {
+    const authData = { email: email, password: password, invitationCode: inviteCode, phoneNumber: phoneNumber };
 
     this.http.post(URL_BACKEND + "/signup", authData)
       .subscribe(reponse => {
