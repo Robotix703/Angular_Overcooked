@@ -9,7 +9,7 @@ mat-spinner {
 
 mat-card {
     margin-top: 1rem;
-    width: 75%;
+    width: 50%;
 }
 
 .main-div{
@@ -29,4 +29,11 @@ input[type='file']{
 
 .image-preview img {
     height: 100%;
+}
+
+.title{
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 1rem;
+    color: rgb(14, 180, 102);
 }
