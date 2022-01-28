@@ -1,0 +1,17 @@
+.title{
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 1rem;
+    color: rgb(14, 180, 102);
+}
+
+mat-card {
+    margin-top: 1rem;
+    width: 75%;
+}
+
+.main-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
