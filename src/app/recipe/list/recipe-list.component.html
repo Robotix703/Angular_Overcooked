@@ -27,10 +27,11 @@
       <img [src]="recipe.imagePath" [alt]="recipe.title">
     </div>
 
+    <hr>
+
     <!--Boutons d'actions-->
     <mat-card-actions>
-      <a mat-button color="primary" [routerLink]="['/instruction/list', recipe._id]">Modifier</a>
-      <a mat-button color="secondary" [routerLink]="['/edit', recipe._id]">Editer</a>
+      <a mat-button color="secondary" [routerLink]="['/instruction/list', recipe._id]">Modifier</a>
       <button mat-button color="warn" (click)="onDelete(recipe._id)">Supprimer</button>
     </mat-card-actions>
   </mat-card>

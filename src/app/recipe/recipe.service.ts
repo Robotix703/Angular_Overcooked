@@ -22,7 +22,7 @@ export class RecipeService {
 
         this.http.post<Recipe>(URL_BACKEND, recipeData)
             .subscribe((responseData: Recipe) => {
-                this.router.navigate(["/"]);
+                this.router.navigate(["/recipe/list"]);
             });
     }
 
