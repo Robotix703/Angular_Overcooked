@@ -22,6 +22,7 @@ import { IngredientModule } from './ingredient/ingredient.module';
 import { InstructionModule } from './instruction/instruction.module';
 import { RecipeModule } from './recipe/recipe.module';
 import { MealModule } from './meal/meal.module';
+import { PantryModule } from './pantry/pantry.module';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { MealModule } from './meal/meal.module';
     IngredientModule,
     InstructionModule,
     RecipeModule,
-    MealModule
+    MealModule,
+    PantryModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
