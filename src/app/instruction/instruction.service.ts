@@ -23,7 +23,7 @@ export class InstructionService {
 
         this.http.post<Instruction>(URL_BACKEND + "/byIngredientName", instructionData)
             .subscribe((responseData: Instruction) => {
-                this.router.navigate(["/"]);
+                this.router.navigate(["/instruction/list/" + recipeID]);
             });
     }
 

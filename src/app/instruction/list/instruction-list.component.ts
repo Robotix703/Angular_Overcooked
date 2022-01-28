@@ -51,16 +51,7 @@ export class InstructionListComponent implements OnInit, OnDestroy {
         this.route.paramMap.subscribe((paramMap: ParamMap) => {
             if (paramMap.has("recipeID")) {
                 this.recipeID = paramMap.get('recipeID') || "";
-                this.InstructionService.getInstructions(this.recipeID)
-                    .subscribe((instructionData: { Instructions: any }) => {
-                        this.instructions = instructionData.Instructions.sort(this.compare);
-                        this.totalInstructions = instructionData.Instructions.length;
-                        for(let instruction of instructionData.Instructions){
-                            this.dataSource = instruction.composition;
-                            console.log(this.dataSource)
-                            this.changeDetectorRefs.detectChanges();
-                        }
-                    });
+                this.getInstructions();
             }
         });
 
@@ -75,7 +66,7 @@ export class InstructionListComponent implements OnInit, OnDestroy {
         const instructionName = this.instructions.find(e => e._id == instructionID)!.text;
         if (this.clickMethod(instructionName)) {
             this.InstructionService.deleteInstruction(instructionID).subscribe(() => {
-                this.InstructionService.getInstructions(this.recipeID);
+                this.getInstructions();
             });
         }
     }
@@ -86,5 +77,18 @@ export class InstructionListComponent implements OnInit, OnDestroy {
 
     clickMethod(name: string) {
         return confirm("Confirmez la suppression de " + name);
+    }
+
+    getInstructions(){
+        this.InstructionService.getInstructions(this.recipeID)
+                .subscribe((instructionData: { Instructions: any }) => {
+                    this.instructions = instructionData.Instructions.sort(this.compare);
+                    this.totalInstructions = instructionData.Instructions.length;
+                    for(let instruction of instructionData.Instructions){
+                        this.dataSource = instruction.composition;
+                        console.log(this.dataSource)
+                        this.changeDetectorRefs.detectChanges();
+                    }
+                });
     }
 }
