@@ -12,13 +12,13 @@ mat-card {
     width: 75%;
 }
 
-.main-div{
+.main-div {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-input[type='file']{
+input[type='file'] {
     visibility: hidden;
 }
 
@@ -29,4 +29,17 @@ input[type='file']{
 
 .image-preview img {
     height: 100%;
+}
+
+.recipe-header {
+    margin: 1rem;
+    position: relative;
+    text-align: center;
+}
+
+.title {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 1rem;
+    color: rgb(14, 180, 102);
 }
