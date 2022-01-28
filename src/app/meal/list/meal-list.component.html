@@ -3,8 +3,6 @@
     <a mat-raised-button color="primary" routerLink="/meal/create">Ajouter repas</a>
 </div>
 
-
-
 <mat-accordion *ngIf="meals.length > 0">
     <mat-card *ngFor="let meal of meals" [ngStyle]="{'background-color': meal.background}">
         <mat-card-header>
