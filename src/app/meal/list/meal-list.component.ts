@@ -44,7 +44,6 @@ export class MealListComponent implements OnInit, OnDestroy {
     }
 
     consume(mealID: string){
-        console.log(mealID);
         this.MealService.consumeMeal(mealID).subscribe((result) =>{
             this.getMeals();
         });

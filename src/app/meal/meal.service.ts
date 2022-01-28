@@ -34,6 +34,6 @@ export class MealService {
     }
 
     consumeMeal(mealID: string){
-        return this.http.post<string>(URL_BACKEND + "consume", { mealID: mealID });
+        return this.http.post<{status: string}>(URL_BACKEND + "consume", { mealID: mealID });
     }
 }
