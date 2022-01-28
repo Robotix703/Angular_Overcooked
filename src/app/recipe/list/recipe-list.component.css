@@ -26,3 +26,16 @@ mat-accordion {
   max-width: 100%;
   height: auto;
 }
+
+.recipe-header {
+  margin: 1rem;
+  position: relative;
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 1rem;
+  color: rgb(14, 180, 102);
+}
