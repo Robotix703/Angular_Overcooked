@@ -16,6 +16,7 @@ import { InstructionListComponent } from './instruction/list/instruction-list.co
 import { MealCreateComponent } from './meal/create/meal-create.component';
 import { MealListComponent } from './meal/list/meal-list.component';
 import { PantryListComponent } from './pantry/list/pantry-list.component';
+import { PantryCreateComponent } from './pantry/create/pantry-create.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -79,6 +80,9 @@ const routes: Routes = [
     children: [
       {
         path:'list', component: PantryListComponent
+      },
+      {
+        path:'create', component: PantryCreateComponent
       }
     ]
   }

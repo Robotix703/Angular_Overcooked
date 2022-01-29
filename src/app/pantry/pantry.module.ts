@@ -5,10 +5,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { PantryListComponent } from './list/pantry-list.component';
+import { PantryCreateComponent } from './create/pantry-create.component';
 
 @NgModule({
     declarations: [
-        PantryListComponent
+        PantryListComponent,
+        PantryCreateComponent
     ],
     imports: [
         CommonModule,
