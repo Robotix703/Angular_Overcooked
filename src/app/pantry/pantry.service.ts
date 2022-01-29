@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { environment } from "../../environments/environment";
 
-import { Pantry } from "./pantry.model";
+import {  IngredientInventory } from "./pantry.model";
 
 const URL_BACKEND = environment.apiURL + "pantry/";
 
@@ -13,4 +13,12 @@ const URL_BACKEND = environment.apiURL + "pantry/";
 export class PantryService {
 
     constructor(private http: HttpClient, private router: Router) { }
+
+    getIngredientInventory(){
+        return this.http.get<IngredientInventory[]>(URL_BACKEND + "fullPantryInventory");
+    }
+
+    deletePantry(pantryID: string){
+        return this.http.delete(URL_BACKEND + pantryID);
+    }
 }

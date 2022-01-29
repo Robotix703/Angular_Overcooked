@@ -4,3 +4,10 @@ export interface Pantry {
     quantity: number
     expirationDate: Date
 }
+
+export interface IngredientInventory {
+    ingredientID: string,
+    ingredientName: string,
+    ingredientImagePath: string,
+    pantries: Pantry[]
+}
