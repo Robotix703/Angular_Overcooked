@@ -86,7 +86,6 @@ export class InstructionListComponent implements OnInit, OnDestroy {
                     this.totalInstructions = instructionData.Instructions.length;
                     for(let instruction of instructionData.Instructions){
                         this.dataSource = instruction.composition;
-                        console.log(this.dataSource)
                         this.changeDetectorRefs.detectChanges();
                     }
                 });

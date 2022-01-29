@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core'
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs';
+
 import { InstructionService } from '../instruction.service';
+import { IngredientService } from 'src/app/ingredient/ingredient.service';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
     selector: 'app-instruction-create',
@@ -15,11 +19,23 @@ export class InstructionCreateComponent implements OnInit {
         private fb: FormBuilder, 
         public InstructionService: InstructionService,
         public route: ActivatedRoute,
-        ) { }
+        public IngredientService: IngredientService
+    ) { }
 
     productForm: FormGroup = new FormGroup({});
+    ingredientAutoComplete = new FormControl();
+    
+    options: string[] = [];
+    filteredOptions: Observable<string[]> = new Observable;
 
     recipeID: string = "";
+    ingredients: {ingredientName: string, quantity: number}[] = [];
+
+    private _filter(value: string): string[] {
+        const filterValue = value.toLowerCase();
+
+        return this.options.filter(option => option.toLowerCase().includes(filterValue));
+    }
 
     ngOnInit() {
         this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -32,46 +48,43 @@ export class InstructionCreateComponent implements OnInit {
             text: new FormControl(null, {
                 validators: [Validators.required, Validators.minLength(3)]
             }),
-            ingredients: this.fb.array(
-                [this.fb.group(
-                    {
-                        ingredientName: new FormControl(null, {
-                            validators: [Validators.required, Validators.minLength(3)]
-                        }),
-                        quantity: new FormControl(null, {
-                            validators: [Validators.required, Validators.min(0), Validators.max(9999)]
-                        })
-                    }
-                )]
-            )
+            quantity: new FormControl(null, {
+                validators: []
+            })
+        })
+
+        this.IngredientService.getAllIngredientsName().subscribe((result) => {
+            this.options = result;
+
+            this.filteredOptions = this.ingredientAutoComplete.valueChanges.pipe(
+                startWith(''),
+                map(value => this._filter(value))
+            );
         })
     }
 
-    get ingredients() {
-        return this.productForm.get('ingredients') as FormArray;
-    }
-
     addIngredient() {
-        this.ingredients.push(this.fb.group(
-            {
-                ingredientName: new FormControl(null, {
-                    validators: [Validators.required, Validators.minLength(3)]
-                }),
-                quantity: new FormControl(null, {
-                    validators: [Validators.required, Validators.min(0), Validators.max(9999)]
-                })
-            }
-        ));
+        if(this.ingredientAutoComplete.value && this.productForm.value.quantity){
+            this.ingredients.push({
+                ingredientName: this.ingredientAutoComplete.value,
+                quantity: this.productForm.value.quantity
+            });
+            this.productForm.setValue({
+                text: this.productForm.value.text,
+                quantity: null
+            });
+            this.ingredientAutoComplete.setValue("");
+        }
     }
 
-    deleteIngredient(index: number) {
-        this.ingredients.removeAt(index);
+    deleteIngredient(ingredientName: string) {
+        this.ingredients = this.ingredients.filter(e => e.ingredientName != ingredientName);
     }
 
     onSavePost() {
         if (this.productForm.invalid) return;
 
-        this.InstructionService.addInstruction(this.productForm.value.text, this.productForm.value.ingredients, this.recipeID);
+        this.InstructionService.addInstruction(this.productForm.value.text, this.ingredients, this.recipeID);
         this.productForm.reset();
     }
 }

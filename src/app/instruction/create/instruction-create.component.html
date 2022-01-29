@@ -8,30 +8,34 @@
                 <textarea matInput formControlName='text' placeholder="Instruction"></textarea>
             </mat-form-field>
 
-            <h2>Liste des Ingrédients</h2>
-            <div formArrayName="ingredients" class="container">
-                <div *ngFor="let item of ingredients.controls; let ingredientIndex=index"
-                    [formGroupName]="ingredientIndex">
-                    <table>
-                        <tr>
-                            <td>
-                                <mat-form-field appearance="fill">
-                                    <input matInput type="text" formControlName='ingredientName'
-                                        placeholder="Nom ingrédient">
-                                </mat-form-field>
-                            </td>
-                            <td>
-                                <mat-form-field appearance="fill">
-                                    <input matInput type="number" formControlName='quantity' placeholder="Quantité">
-                                </mat-form-field>
-                            </td>
-                            <td><button mat-raised-button color="warn" type="button"
-                                    (click)="deleteIngredient(ingredientIndex)">Supprimer</button></td>
-                        </tr>
-                    </table>
-                </div>
+            <h2>Ajouter un ingrédient</h2>
+            <div class="onSameLine">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Entrez un nom</mat-label>
+                    <input type="text" placeholder="Nom" aria-label="Nom" matInput [formControl]="ingredientAutoComplete"
+                        [matAutocomplete]="auto">
+                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <input matInput type="number" placeholder="Quantité" formControlName="quantity">
+                </mat-form-field>
                 <button mat-raised-button color="accent" type="button" style="margin-top: 1rem; margin-bottom: 1rem;"
                     (click)="addIngredient()">Ajouter ingrédient</button>
+            </div>
+
+            <hr>
+            <div class="onSameLine">
+                <h2 style="text-align: center; width: 50%;">Nom de l'ingrédient</h2>
+                <h2 style="text-align: center; width: 50%;">Quantité</h2>
+            </div>
+            <div class="onSameLine" *ngFor="let item of ingredients">
+                <h2 style="text-align: center; width: 50%;">{{item.ingredientName}}</h2>
+                <h2 style="text-align: center; width: 50%;">{{item.quantity}}</h2>
+                <a mat-raised-button color="warn" (click)="deleteIngredient(item.ingredientName)"><mat-icon>delete</mat-icon></a>
             </div>
             <hr>
             <button mat-raised-button color="primary" style="margin-top: 1rem;" type="submit">Sauvegarder</button>

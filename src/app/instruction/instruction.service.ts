@@ -14,7 +14,7 @@ export class InstructionService {
 
     constructor(private http: HttpClient, private router: Router) { }
 
-    addInstruction(text: string, ingredients: [{ingredientName: string, quantity: number}], recipeID: string) {
+    addInstruction(text: string, ingredients: {ingredientName: string, quantity: number}[], recipeID: string) {
         const instructionData = {
             text: text,
             ingredients: ingredients,

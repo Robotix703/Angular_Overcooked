@@ -15,3 +15,14 @@ mat-card {
     justify-content: center;
     align-items: center;
 }
+
+.onSameLine {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+mat-form-field,
+textarea {
+    width: 35%;
+}
