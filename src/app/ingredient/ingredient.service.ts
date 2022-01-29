@@ -36,6 +36,10 @@ export class IngredientService {
         return this.http.get<{ ingredients: Ingredient[], count: number }>(URL_BACKEND + `name?name=${name}`);
     }
 
+    getIngredientByID(ingredientID: string){
+        return this.http.get<Ingredient>(URL_BACKEND + `byID?ingredientID=${ingredientID}`);
+    }
+
     deleteIngredient(ingredientID: string) {
         return this.http.delete(URL_BACKEND + ingredientID);
     }

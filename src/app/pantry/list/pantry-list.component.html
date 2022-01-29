@@ -24,7 +24,7 @@
                 <a mat-raised-button style="margin-right: 1rem;" color="primary"><mat-icon>edit</mat-icon></a>
                 <a mat-raised-button color="warn" (click)="deletePantry(pantry)"><mat-icon>delete</mat-icon></a>
             </div>
-            <a mat-raised-button color="accent" [routerLink]="['/pantry/create']">+</a>
+            <a mat-raised-button color="accent" [routerLink]="['/pantry/create', ingredient.ingredientID]">+</a>
         </mat-card-content>
     </mat-card>
 </mat-accordion>
