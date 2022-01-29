@@ -43,4 +43,8 @@ export class IngredientService {
     deleteIngredient(ingredientID: string) {
         return this.http.delete(URL_BACKEND + ingredientID);
     }
+
+    getAllIngredientsName(){
+        return this.http.get<string[]>(URL_BACKEND + "allNames");
+    }
 }

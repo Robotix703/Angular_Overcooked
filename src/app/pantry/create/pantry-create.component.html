@@ -4,9 +4,15 @@
     <mat-card>
         <form [formGroup]="formulaire" (submit)="onSavePantry()">
             <!--ingredientName-->
-            <mat-form-field>
-                <input matInput type="text" formControlName='ingredientName' placeholder="Nom">
-                <mat-error *ngIf="formulaire.get('ingredientName')!.invalid">Entrez un nom</mat-error>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Entrez un nom</mat-label>
+                <input type="text" placeholder="Nom" aria-label="Nom" matInput [formControl]="ingredientAutoComplete"
+                    [matAutocomplete]="auto">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
             </mat-form-field>
 
             <!--Quantity-->
