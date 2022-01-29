@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { environment } from "../../environments/environment";
 
-import {  IngredientInventory } from "./pantry.model";
+import {  IngredientInventory, Pantry } from "./pantry.model";
 
 const URL_BACKEND = environment.apiURL + "pantry/";
 
@@ -20,5 +20,17 @@ export class PantryService {
 
     deletePantry(pantryID: string){
         return this.http.delete(URL_BACKEND + pantryID);
+    }
+
+    createPantry(ingredientName: string, quantity: number, expirationDate: Date){
+        this.http.post<Pantry>(URL_BACKEND + "createByIngredientName", 
+        {
+            ingredientName: ingredientName,
+            quantity: quantity.toString(),
+            expirationDate: expirationDate.toString()
+        })
+        .subscribe((responseData: Pantry) => {
+            this.router.navigate(["/pantry/list"]);
+        });
     }
 }

@@ -1,0 +1,32 @@
+<h2 class="title">Ajout élément</h2>
+
+<div class="main-div">
+    <mat-card>
+        <form [formGroup]="formulaire" (submit)="onSavePantry()">
+            <!--ingredientName-->
+            <mat-form-field>
+                <input matInput type="text" formControlName='ingredientName' placeholder="Nom">
+                <mat-error *ngIf="formulaire.get('ingredientName')!.invalid">Entrez un nom</mat-error>
+            </mat-form-field>
+
+            <!--Quantity-->
+            <mat-form-field>
+                <input matInput type="number" formControlName='quantity' placeholder="Quantité">
+                <mat-error *ngIf="formulaire.get('quantity')!.invalid">Entrez une quantité</mat-error>
+            </mat-form-field>
+
+            <!--ExpirationDate-->
+            <mat-form-field appearance="fill">
+                <mat-label>Choisir une date de péremption</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="expirationDate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <hr>
+            <!--Imput-->
+            <button mat-raised-button color="primary" type="submit" style="margin-top: 1rem;">Sauvegarder
+                élément</button>
+        </form>
+    </mat-card>
+</div>
