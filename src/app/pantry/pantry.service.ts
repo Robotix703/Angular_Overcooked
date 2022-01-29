@@ -33,4 +33,8 @@ export class PantryService {
             this.router.navigate(["/pantry/list"]);
         });
     }
+
+    getPantryByID(pantryID: string){
+        return this.http.get<{_id: string, ingredientID: string, ingredientName: string, quantity: number, expirationDate: Date}>(URL_BACKEND + `/byID?pantryID=${pantryID}`);
+    }
 }

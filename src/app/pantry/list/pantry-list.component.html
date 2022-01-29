@@ -1,6 +1,6 @@
 <div class="pantry-header">
     <h2 class="title">Inventaire Garde Manger</h2>
-    <a mat-raised-button color="primary" routerLink="/">Ajouter nourriture</a>
+    <a mat-raised-button color="primary" routerLink="/pantry/create">Ajouter nourriture</a>
 </div>
 
 <mat-accordion *ngIf="inventory.length > 0">
@@ -21,7 +21,7 @@
             <h2>Liste des éléments</h2>
             <div class="onSameLine" *ngFor="let pantry of ingredient.pantries">
                 <h4 class="ingredientQuantity">{{pantry.quantity}}</h4>
-                <a mat-raised-button style="margin-right: 1rem;" color="primary"><mat-icon>edit</mat-icon></a>
+                <a mat-raised-button style="margin-right: 1rem;" color="primary" [routerLink]="['/pantry/edit', pantry._id]"><mat-icon>edit</mat-icon></a>
                 <a mat-raised-button color="warn" (click)="deletePantry(pantry)"><mat-icon>delete</mat-icon></a>
             </div>
             <a mat-raised-button color="accent" [routerLink]="['/pantry/create', ingredient.ingredientID]">+</a>

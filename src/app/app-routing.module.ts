@@ -83,6 +83,12 @@ const routes: Routes = [
       },
       {
         path:'create/:ingredientID', component: PantryCreateComponent
+      },
+      {
+        path:'create', component: PantryCreateComponent
+      },
+      {
+        path:'edit/:pantryID', component: PantryCreateComponent
       }
     ]
   }
