@@ -31,16 +31,16 @@
             </div>
             <!--Consumable-->
             <mat-dialog-content>
-                <div class="row">
-                    <div *ngIf="ingredient.consumable">
-                        Consommable
-                    </div>
-                    <div>
-                        <hr>
-                        <button mat-button color="warn" (click)="onDelete(ingredient)">Supprimer</button>
-                    </div>
-                </div>
+                <h3 *ngIf="ingredient.consumable">Consommé avec la recette</h3>
+                <h3>Type : {{ingredient.category}}</h3>
+                <h3>Unité : {{ingredient.unitOfMeasure}}</h3>
+                <h3 *ngIf="ingredient.shelfLife != -1">Durée de conservation : {{ingredient.shelfLife}}</h3>
             </mat-dialog-content>
+
+            <hr>
+            <mat-card-actions>
+                <button mat-raised-button color="warn" (click)="onDelete(ingredient)">Supprimer</button>
+            </mat-card-actions>
         </mat-card>
     </mat-accordion>
 
