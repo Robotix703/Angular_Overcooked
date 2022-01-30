@@ -16,11 +16,14 @@ export class IngredientService {
 
     constructor(private http: HttpClient, private router: Router) { }
 
-    addIngredient(name: string, consumable: boolean, image: File) {
+    addIngredient(name: string, consumable: boolean, image: File, category: string, unitOfMeasure: string, shelfLife: number) {
         const ingredientData = new FormData();
         ingredientData.append("name", name);
         ingredientData.append("consumable", consumable.toString());
         ingredientData.append("image", image, name);
+        ingredientData.append("category", category);
+        ingredientData.append("unitOfMeasure", unitOfMeasure);
+        ingredientData.append("shelfLife", shelfLife.toString());
 
         this.http.post<Ingredient>(URL_BACKEND, ingredientData)
             .subscribe((responseData: Ingredient) => {

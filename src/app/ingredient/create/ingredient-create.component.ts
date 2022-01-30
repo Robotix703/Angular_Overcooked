@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IngredientService } from '../ingredient.service';
+import { categories, unitOfMeasures } from "../ingredient.model";
 
 import { mimeType } from "./mime-type.validator";
 
@@ -16,6 +17,9 @@ export class IngredientCreateComponent implements OnInit {
   formulaire: FormGroup = new FormGroup({});
   imagePreview: string = "";
 
+  ingredientCategories = categories;
+  ingredientUnitOfMeasures = unitOfMeasures;
+
   constructor(public IngredientService: IngredientService, public route: ActivatedRoute) {}
 
   ngOnInit() {
@@ -25,6 +29,15 @@ export class IngredientCreateComponent implements OnInit {
       }),
       consumable: new FormControl(null, {
         validators: []
+      }),
+      category: new FormControl(null, {
+        validators: [Validators.required]
+      }),
+      unitOfMeasure: new FormControl(null, {
+        validators: [Validators.required]
+      }),
+      shelfLife: new FormControl(null, {
+        validators: [Validators.required]
       }),
       image: new FormControl(null, {validators: [Validators.required], asyncValidators: [mimeType]})
     });
@@ -46,7 +59,14 @@ export class IngredientCreateComponent implements OnInit {
   onSavePost(){
     if(this.formulaire.invalid) return;
 
-    this.IngredientService.addIngredient(this.formulaire.value.name, this.formulaire.value.consumable ? this.formulaire.value.consumable : false, this.formulaire.value.image);
+    this.IngredientService.addIngredient(
+      this.formulaire.value.name, 
+      this.formulaire.value.consumable ? this.formulaire.value.consumable : false, 
+      this.formulaire.value.image,
+      this.formulaire.value.category,
+      this.formulaire.value.unitOfMeasure,
+      this.formulaire.value.shelfLife
+    );
 
     this.formulaire.reset();
   }
