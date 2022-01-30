@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
-
 import { environment } from "../../environments/environment";
 
 import { Recipe } from './recipe.model';
@@ -28,7 +27,6 @@ export class RecipeService {
 
     getRecipes(pageSize: number, currentPage: number){
         const queryParams = `?pageSize=${pageSize}&currentPage=${currentPage}`;
-
         return this.http.get<{ recipes: any, count: number }>(URL_BACKEND + queryParams);
     }
 

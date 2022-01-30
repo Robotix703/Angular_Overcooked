@@ -24,7 +24,6 @@ export class IngredientListComponent implements OnInit {
   }
 
   onDelete(ingredient: Ingredient) {
-
     if (this.clickMethod(ingredient.name)) {
       this.IngredientService.deleteIngredient(ingredient._id)
       .subscribe(() => {

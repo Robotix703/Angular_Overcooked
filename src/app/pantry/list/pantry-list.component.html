@@ -6,13 +6,11 @@
 <mat-accordion *ngIf="inventory.length > 0">
     <mat-card *ngFor="let ingredient of inventory">
         <mat-card-header>
-            <!--Titre-->
             <mat-card-title>
                 {{ ingredient.ingredientName }}
             </mat-card-title>
         </mat-card-header>
 
-        <!--Image-->
         <div class="ingredient-image">
             <img [src]="ingredient.ingredientImagePath" [alt]="ingredient.ingredientName">
         </div>

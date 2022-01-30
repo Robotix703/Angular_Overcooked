@@ -6,23 +6,19 @@
 <mat-accordion *ngIf="meals.length > 0">
     <mat-card *ngFor="let meal of meals" [ngStyle]="{'background-color': meal.background}">
         <mat-card-header>
-            <!--Titre-->
             <mat-card-title>
                 {{ meal.title }}
             </mat-card-title>
 
-            <!--Sous titre-->
             <mat-card-subtitle>
                 Pour {{ meal.numberOfLunch }} repas.
             </mat-card-subtitle>
         </mat-card-header>
 
-        <!--Image-->
         <div class="meal-image">
             <img [src]="meal.imagePath" [alt]="meal.title">
         </div>
 
-        <!--Boutons d'actions-->
         <mat-card-actions>
             <a mat-raised-button color="primary" *ngIf="meal.state" (click)="consume(meal._id)">Consommer</a>
         </mat-card-actions>

@@ -1,10 +1,8 @@
-import { ContentObserver } from '@angular/cdk/observers';
 import { ChangeDetectorRef, Component, Injectable, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from 'src/app/auth/auth.service';
-import { Instruction } from '../instruction.model';
 import { InstructionService } from '../instruction.service';
 
 @Component({
@@ -18,9 +16,7 @@ import { InstructionService } from '../instruction.service';
 export class InstructionListComponent implements OnInit, OnDestroy {
 
     instructions: any[] = [];
-
     totalInstructions: number = 0;
-
     recipeID: string = "";
 
     userIsAuthenticated = false;
@@ -56,7 +52,6 @@ export class InstructionListComponent implements OnInit, OnDestroy {
         });
 
         this.userIsAuthenticated = this.authService.getIsAuth();
-
         this.authStatusSub = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
             this.userIsAuthenticated = isAuthenticated;
         });

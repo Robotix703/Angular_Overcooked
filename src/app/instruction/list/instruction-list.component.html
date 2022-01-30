@@ -6,12 +6,10 @@
 
 <mat-accordion *ngIf="instructions.length > 0">
   <mat-card *ngFor="let instruc of instructions" style="max-width: 20rem;">
-    <!--Header-->
     <mat-card-title>
       Test
     </mat-card-title>
 
-    <!--Paragraphe-->
     <mat-dialog-content>
       <div class="instruction-text">
         {{ instruc.text }}
@@ -36,7 +34,6 @@
         </table>
 
         <hr>
-        <!--Supression-->
         <button mat-raised-button color="warn" (click)="onDelete(instruc._id)">Delete</button>
       </div>
     </mat-dialog-content>

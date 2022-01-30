@@ -11,9 +11,6 @@ const URL_BACKEND = environment.apiURL + "meal/";
 @Injectable({ providedIn: 'root' })
 
 export class MealService {
-
-    public mealLimit = -1;
-
     constructor(private http: HttpClient, private router: Router) { }
 
     createMeal(recipeID: string, numberOfLunchPlanned: number) {
@@ -25,7 +22,6 @@ export class MealService {
 
     getMeals(pageSize: number, currentPage: number){
         const queryParams = `?pageSize=${pageSize}&currentPage=${currentPage}`;
-
         return this.http.get<{ meals: Meal[], count: number }>(URL_BACKEND + queryParams);
     }
 

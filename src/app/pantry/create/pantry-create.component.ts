@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { IngredientService } from 'src/app/ingredient/ingredient.service';
 
+import { IngredientService } from 'src/app/ingredient/ingredient.service';
 import { PantryService } from "../pantry.service";
 
 @Component({

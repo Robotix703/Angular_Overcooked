@@ -9,24 +9,20 @@
 <mat-accordion *ngIf="recipes.length > 0 && !isLoading">
   <mat-card *ngFor="let recipe of recipes">
     <mat-card-header>
-      <!--Titre-->
       <mat-card-title>
         {{ recipe.title }}
       </mat-card-title>
 
-      <!--Sous titre-->
       <mat-card-subtitle>
         Pour {{ recipe.numberOfLunch }} repas.
       </mat-card-subtitle>
     </mat-card-header>
 
-    <!--Image-->
     <div class="recipe-image">
       <img [src]="recipe.imagePath" [alt]="recipe.title">
     </div>
     <hr>
 
-    <!--Boutons d'actions-->
     <mat-card-actions>
       <a mat-raised-button color="primary" [routerLink]="['/instruction/list', recipe._id]">Modifier</a>
       <button mat-raised-button color="warn" (click)="onDelete(recipe._id)">Supprimer</button>

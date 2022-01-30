@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 import { Pantry, IngredientInventory } from '../pantry.model';
 import { PantryService } from "../pantry.service";
@@ -10,17 +12,27 @@ import { PantryService } from "../pantry.service";
     styleUrls: ['./pantry-list.component.css']
 })
 
-export class PantryListComponent implements OnInit {
+export class PantryListComponent implements OnInit, OnDestroy {
+    inventory : IngredientInventory[] = [];
 
     userIsAuthenticated = false;
     userId = null;
 
-    inventory : IngredientInventory[] = [{ingredientID: "", ingredientName: "", ingredientImagePath: "", pantries: []}];
+    private authStatusSub: Subscription = new Subscription();
 
-    constructor(public PantryService: PantryService, public route: ActivatedRoute) { }
+    constructor(private authService: AuthService, public PantryService: PantryService, public route: ActivatedRoute) { }
 
     ngOnInit() {
         this.getIngredientInventory();
+
+        this.userIsAuthenticated = this.authService.getIsAuth();
+        this.authStatusSub = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
+            this.userIsAuthenticated = isAuthenticated;
+        });
+    }
+
+    ngOnDestroy() {
+        this.authStatusSub.unsubscribe();
     }
 
     deletePantry(pantry: Pantry){

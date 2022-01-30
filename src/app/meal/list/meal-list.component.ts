@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 
-import { Meal, PrettyMeal } from '../meal.model';
+import { PrettyMeal } from '../meal.model';
 import { MealService } from "../meal.service";
 
 @Component({
@@ -27,14 +27,12 @@ export class MealListComponent implements OnInit, OnDestroy {
         this.getMeals();
 
         this.userIsAuthenticated = this.authService.getIsAuth();
-
         this.authStatusSub = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
             this.userIsAuthenticated = isAuthenticated;
         });
     }
 
-    displayMeals(meals: PrettyMeal[])
-    {
+    displayMeals(meals: PrettyMeal[]){
         this.meals = (meals) ? meals : [];
     }
 
