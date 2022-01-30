@@ -61,6 +61,9 @@ const routes: Routes = [
       },
       {
         path:'list', component: RecipeListComponent
+      },
+      {
+        path:'edit/:recipeID', component: RecipeCreateComponent
       }
     ]
   },

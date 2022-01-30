@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { mimeType } from "./mime-type.validator";
 
 import { RecipeService } from "../recipe.service"
+import { Recipe } from '../recipe.model';
 
 @Component({
     selector: 'app-recipe-create',
@@ -19,6 +20,19 @@ export class RecipeCreateComponent implements OnInit {
     constructor(public RecipeService: RecipeService, public route: ActivatedRoute) { }
 
     ngOnInit() {
+        this.route.paramMap.subscribe((paramMap: ParamMap) => {
+            if (paramMap.has("recipeID")) {
+                const recipeID = paramMap.get('recipeID') || "";
+                this.RecipeService.getRecipe(recipeID).subscribe((recipe : Recipe) => {
+                    this.formulaire.setValue({
+                        title: recipe.title,
+                        numberOfLunch: recipe.numberOfLunch,
+                        image: recipe.imagePath
+                    });
+                });
+            }
+        });
+
         this.formulaire = new FormGroup({
             title: new FormControl(null, {
                 validators: [Validators.required, Validators.minLength(3)]

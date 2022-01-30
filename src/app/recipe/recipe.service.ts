@@ -33,4 +33,8 @@ export class RecipeService {
     deleteRecipe(recipeID: string){
         return this.http.delete(URL_BACKEND + recipeID);
     }
+
+    getRecipe(recipeID: string){
+        return this.http.get<Recipe>(URL_BACKEND + "/byID?recipeID=" + recipeID);
+    }
 }

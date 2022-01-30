@@ -24,8 +24,9 @@
     <hr>
 
     <mat-card-actions>
-      <a mat-raised-button color="primary" [routerLink]="['/instruction/list', recipe._id]">Modifier</a>
-      <button mat-raised-button color="warn" (click)="onDelete(recipe._id)">Supprimer</button>
+      <a mat-raised-button color="primary" [routerLink]="['/recipe/edit', recipe._id]"><mat-icon>edit</mat-icon></a>
+      <a mat-raised-button color="secondary" [routerLink]="['/instruction/list', recipe._id]">Instructions</a>
+      <button mat-raised-button color="warn" (click)="onDelete(recipe._id)"><mat-icon>delete</mat-icon></button>
     </mat-card-actions>
   </mat-card>
 </mat-accordion>
