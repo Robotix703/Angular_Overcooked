@@ -10,11 +10,19 @@
   <mat-card *ngFor="let recipe of recipes">
     <mat-card-header>
       <mat-card-title>
-        {{ recipe.title }}
+        {{ recipe.category }} - {{ recipe.title }}
       </mat-card-title>
 
       <mat-card-subtitle>
-        Pour {{ recipe.numberOfLunch }} repas.
+        <p>
+          Pour {{ recipe.numberOfLunch }} repas.
+        </p>
+        <p>
+          En {{ recipe.duration }} minutes.
+        </p>
+        <p>
+          Note : {{recipe.score}}/10
+        </p>
       </mat-card-subtitle>
     </mat-card-header>
 
