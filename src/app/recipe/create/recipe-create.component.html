@@ -16,6 +16,26 @@
                 <input matInput type="number" formControlName='numberOfLunch' placeholder="Nombre de repas">
             </mat-form-field>
 
+            <!--Category-->
+            <mat-form-field appearance="fill">
+                <mat-label>Catégorie</mat-label>
+                <mat-select formControlName='category'>
+                    <mat-option *ngFor="let categoryDisplayed of categoriesRecipe" [value]="categoryDisplayed">
+                        {{categoryDisplayed}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!--Duration-->
+            <mat-form-field>
+                <input matInput type="number" formControlName='duration' placeholder="Durée de réalisation">
+            </mat-form-field>
+
+            <!--Score-->
+            <mat-form-field>
+                <input matInput type="number" formControlName='score' placeholder="Note / 10">
+            </mat-form-field>
+
             <!--File-->
             <div>
                 <button mat-stroked-button type="button" (click)=filePicker.click()>Image</button>

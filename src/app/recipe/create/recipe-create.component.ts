@@ -4,7 +4,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { mimeType } from "./mime-type.validator";
 
 import { RecipeService } from "../recipe.service"
-import { Recipe } from '../recipe.model';
+import { categoriesRecipe, Recipe } from '../recipe.model';
 
 @Component({
     selector: 'app-recipe-create',
@@ -13,6 +13,8 @@ import { Recipe } from '../recipe.model';
 })
 
 export class RecipeCreateComponent implements OnInit {
+
+    categoriesRecipe = categoriesRecipe;
 
     formulaire: FormGroup = new FormGroup({});
     imagePreview: string = "";
@@ -40,7 +42,16 @@ export class RecipeCreateComponent implements OnInit {
             numberOfLunch: new FormControl(null, {
                 validators: [Validators.required, Validators.min(1)]
             }),
-            image: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] })
+            image: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] }),
+            category: new FormControl(null, {
+                validators: [Validators.required]
+            }),
+            duration: new FormControl(null, {
+                validators: [Validators.required, Validators.min(1)]
+            }),
+            score: new FormControl(null, {
+                validators: [Validators.min(0), Validators.max(10)]
+            })
         });
     }
 
@@ -60,7 +71,13 @@ export class RecipeCreateComponent implements OnInit {
     onSavePost() {
         if (this.formulaire.invalid) return;
 
-        this.RecipeService.addRecipe(this.formulaire.value.title, this.formulaire.value.numberOfLunch, this.formulaire.value.image);
+        this.RecipeService.addRecipe(
+            this.formulaire.value.title, 
+            this.formulaire.value.numberOfLunch, 
+            this.formulaire.value.image, 
+            this.formulaire.value.category,
+            this.formulaire.value.duration,
+            this.formulaire.value.score);
         this.formulaire.reset();
     }
 }
