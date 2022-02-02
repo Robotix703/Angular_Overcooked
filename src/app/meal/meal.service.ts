@@ -16,7 +16,7 @@ export class MealService {
     createMeal(recipeID: string, numberOfLunchPlanned: number) {
         this.http.post<Meal>(URL_BACKEND, { recipeID: recipeID, numberOfLunchPlanned: numberOfLunchPlanned.toString() })
             .subscribe((responseData: Meal) => {
-                this.router.navigate(["/"]);
+                this.router.navigate(["/meal/list"]);
             });
     }
 
