@@ -5,7 +5,8 @@ export interface Ingredient {
   consumable: boolean,
   category: string,
   unitOfMeasure: string,
-  shelfLife: number
+  shelfLife: number,
+  freezable: boolean
 }
 
 export const categories = [

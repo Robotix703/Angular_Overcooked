@@ -16,7 +16,7 @@ export class IngredientService {
 
     constructor(private http: HttpClient, private router: Router) { }
 
-    addIngredient(name: string, consumable: boolean, image: File, category: string, unitOfMeasure: string, shelfLife: number) {
+    addIngredient(name: string, consumable: boolean, image: File, category: string, unitOfMeasure: string, shelfLife: number, freezable: boolean) {
         const ingredientData = new FormData();
         ingredientData.append("name", name);
         ingredientData.append("consumable", consumable.toString());
@@ -24,6 +24,7 @@ export class IngredientService {
         ingredientData.append("category", category);
         ingredientData.append("unitOfMeasure", unitOfMeasure);
         ingredientData.append("shelfLife", shelfLife.toString());
+        ingredientData.append("freezable", freezable.toString());
 
         this.http.post<Ingredient>(URL_BACKEND, ingredientData)
             .subscribe((responseData: Ingredient) => {

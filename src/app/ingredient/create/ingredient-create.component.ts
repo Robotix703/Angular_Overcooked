@@ -39,7 +39,10 @@ export class IngredientCreateComponent implements OnInit {
       shelfLife: new FormControl(null, {
         validators: [Validators.required]
       }),
-      image: new FormControl(null, {validators: [Validators.required], asyncValidators: [mimeType]})
+      image: new FormControl(null, {validators: [Validators.required], asyncValidators: [mimeType]}),
+      freezable: new FormControl(null, {
+        validators: []
+      })
     });
   }
 
@@ -65,7 +68,8 @@ export class IngredientCreateComponent implements OnInit {
       this.formulaire.value.image,
       this.formulaire.value.category,
       this.formulaire.value.unitOfMeasure,
-      this.formulaire.value.shelfLife
+      this.formulaire.value.shelfLife,
+      this.formulaire.value.freezable ? this.formulaire.value.freezable : false
     );
 
     this.formulaire.reset();
