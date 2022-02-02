@@ -23,6 +23,9 @@
         <p>
           Note : {{recipe.score}}/10
         </p>
+        <p *ngIf="recipe.lastCooked">
+          Cuisiné pour la dernière fois {{ recipe.lastCooked }}
+        </p>
       </mat-card-subtitle>
     </mat-card-header>
 

@@ -5,7 +5,8 @@ export interface Recipe {
     imagePath: string
     category: string,
     duration: number,
-    score: number
+    score: number,
+    lastCooked: Date
 }
 
 export const categoriesRecipe = [
