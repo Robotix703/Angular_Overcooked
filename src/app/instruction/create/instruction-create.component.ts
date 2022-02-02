@@ -41,6 +41,17 @@ export class InstructionCreateComponent implements OnInit {
         this.route.paramMap.subscribe((paramMap: ParamMap) => {
             if (paramMap.has("recipeID")) {
                 this.recipeID = paramMap.get('recipeID') || "";
+
+                if(this.recipeID){
+                    this.InstructionService.getInstructionCount(this.recipeID).subscribe((count) => {
+                        this.productForm.setValue({
+                            text: null,
+                            quantity: null,
+                            cookingTime: null,
+                            order: count + 1
+                        })
+                    });
+                }
             }
         });
 
@@ -50,6 +61,12 @@ export class InstructionCreateComponent implements OnInit {
             }),
             quantity: new FormControl(null, {
                 validators: []
+            }),
+            cookingTime : new FormControl(null, {
+                validators: []
+            }),
+            order: new FormControl(null, {
+                validators: [Validators.required]
             })
         })
 
@@ -71,7 +88,9 @@ export class InstructionCreateComponent implements OnInit {
             });
             this.productForm.setValue({
                 text: this.productForm.value.text,
-                quantity: null
+                quantity: null,
+                cookingTime: this.productForm.value.cookingTime,
+                order: this.productForm.value.order
             });
             this.ingredientAutoComplete.setValue("");
         }
@@ -84,7 +103,12 @@ export class InstructionCreateComponent implements OnInit {
     onSavePost() {
         if (this.productForm.invalid) return;
 
-        this.InstructionService.addInstruction(this.productForm.value.text, this.ingredients, this.recipeID);
+        this.InstructionService.addInstruction(
+            this.productForm.value.text, 
+            this.ingredients, 
+            this.recipeID, 
+            this.productForm.value.order,
+            this.productForm.value.cookingTime);
         this.productForm.reset();
     }
 }

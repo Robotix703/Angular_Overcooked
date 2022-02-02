@@ -7,6 +7,14 @@
                 <mat-label>Instruction</mat-label>
                 <textarea matInput formControlName='text' placeholder="Instruction"></textarea>
             </mat-form-field>
+            <hr>
+            <mat-form-field appearance="fill" style="width: 100%; margin-top: 1rem;">
+                <input matInput type="number" placeholder="Temps de cuisson" formControlName="cookingTime">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <input matInput type="number" placeholder="Ordre dans la recette" formControlName="order">
+            </mat-form-field>
 
             <h2>Ajouter un ingrédient</h2>
             <div class="onSameLine">

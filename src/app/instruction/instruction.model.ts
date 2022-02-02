@@ -2,5 +2,7 @@ export interface Instruction {
     _id: string
     text: string
     ingredientsID: string[]
-    quantity: number[]
+    quantity: number[],
+    order: number,
+    cookingTime: number
 }

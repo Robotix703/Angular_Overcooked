@@ -27,21 +27,10 @@ export class InstructionListComponent implements OnInit, OnDestroy {
     constructor(
         private authService: AuthService,
         public route: ActivatedRoute,
-        private changeDetectorRefs: ChangeDetectorRef,
         public InstructionService: InstructionService) { }
 
     displayedColumns: string[] = ['name', 'quantity'];
     dataSource = [];
-
-    compare = function (a: any, b: any) {
-        if (a.step < b.step) {
-            return -1;
-        }
-        if (a.step > b.step) {
-            return 1;
-        }
-        return 0;
-    }
 
     ngOnInit() {
         this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -77,11 +66,10 @@ export class InstructionListComponent implements OnInit, OnDestroy {
     getInstructions(){
         this.InstructionService.getInstructions(this.recipeID)
                 .subscribe((instructionData: { Instructions: any }) => {
-                    this.instructions = instructionData.Instructions.sort(this.compare);
+                    this.instructions = instructionData.Instructions;
                     this.totalInstructions = instructionData.Instructions.length;
                     for(let instruction of instructionData.Instructions){
                         this.dataSource = instruction.composition;
-                        this.changeDetectorRefs.detectChanges();
                     }
                 });
     }
