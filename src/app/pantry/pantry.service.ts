@@ -20,12 +20,13 @@ export class PantryService {
         return this.http.delete(URL_BACKEND + pantryID);
     }
 
-    createPantry(ingredientName: string, quantity: number, expirationDate: Date){
+    createPantry(ingredientName: string, quantity: number, expirationDate: Date, frozen: boolean){
         this.http.post<Pantry>(URL_BACKEND + "createByIngredientName", 
         {
             ingredientName: ingredientName,
             quantity: quantity.toString(),
-            expirationDate: expirationDate.toString()
+            expirationDate: expirationDate.toString(),
+            frozen: frozen
         })
         .subscribe((responseData: Pantry) => {
             this.router.navigate(["/pantry/list"]);
@@ -34,5 +35,9 @@ export class PantryService {
 
     getPantryByID(pantryID: string){
         return this.http.get<{_id: string, ingredientID: string, ingredientName: string, quantity: number, expirationDate: Date}>(URL_BACKEND + `/byID?pantryID=${pantryID}`);
+    }
+
+    freezePantry(pantryID: string){
+        return this.http.post<{result: string}>(URL_BACKEND + "freeze", { pantryID: pantryID });
     }
 }

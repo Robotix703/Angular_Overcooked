@@ -13,7 +13,7 @@
 
 mat-card {
     margin-top: 1rem;
-    max-width: 20rem;
+    width: 20rem;
     margin: 10px;
 }
 
@@ -42,6 +42,10 @@ mat-accordion {
 }
 
 .ingredientQuantity{
-    width: 33%;
+    width: 25%;
     text-align: center;
+}
+
+.snowflak-filter{
+    filter: invert(39%) sepia(60%) saturate(2368%) hue-rotate(166deg) brightness(102%) contrast(101%);
 }

@@ -69,11 +69,19 @@ export class PantryCreateComponent implements OnInit {
             quantity: new FormControl(null, {
                 validators: [Validators.required]
             }),
-            expirationDate: new FormControl(new Date())
+            expirationDate: new FormControl(new Date()),
+            frozen : new FormControl(null, {
+                validators: []
+            })
         });
     }
 
     onSavePantry() {
-        this.PantryService.createPantry(this.ingredientAutoComplete.value, this.formulaire.value.quantity, this.formulaire.value.expirationDate);
+        this.PantryService.createPantry(
+            this.ingredientAutoComplete.value, 
+            this.formulaire.value.quantity, 
+            this.formulaire.value.expirationDate, 
+            this.formulaire.value.frozen
+        );
     }
 }
