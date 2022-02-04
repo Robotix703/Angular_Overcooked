@@ -53,4 +53,11 @@ export class PantryListComponent implements OnInit, OnDestroy {
             this.getIngredientInventory();
         });
     }
+
+    refreshTodoist(){
+        this.PantryService.refreshTodoist()
+        .subscribe(() => {
+            this.getIngredientInventory();
+        })
+    }
 }

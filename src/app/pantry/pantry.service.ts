@@ -40,4 +40,8 @@ export class PantryService {
     freezePantry(pantryID: string){
         return this.http.post<{result: string}>(URL_BACKEND + "freeze", { pantryID: pantryID });
     }
+
+    refreshTodoist(){
+        return this.http.post<{result: string}>(URL_BACKEND + "refreshTodoist", {});
+    }
 }

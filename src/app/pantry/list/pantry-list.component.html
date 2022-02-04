@@ -1,6 +1,7 @@
 <div class="pantry-header">
     <h2 class="title">Inventaire Garde Manger</h2>
     <a mat-raised-button color="primary" routerLink="/pantry/create">Ajouter nourriture</a>
+    <a mat-raised-button color="link" style="margin-left: 1rem;" (click)="refreshTodoist()">Actualiser Todoist</a>
 </div>
 
 <mat-accordion *ngIf="inventory.length > 0">
