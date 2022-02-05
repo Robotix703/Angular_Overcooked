@@ -37,7 +37,8 @@ export class PantryCreateComponent implements OnInit {
                 this.IngredientService.getIngredientByID(ingredientID).subscribe((result) => {
                     this.formulaire.setValue({
                         quantity: null,
-                        expirationDate: null
+                        expirationDate: null,
+                        frozen: null
                     });
                     this.ingredientAutoComplete.setValue(result.name);
                 });
@@ -49,7 +50,8 @@ export class PantryCreateComponent implements OnInit {
                 this.PantryService.getPantryByID(pantryID).subscribe((result) => {
                     this.formulaire.setValue({
                         quantity: result.quantity,
-                        expirationDate: result.expirationDate
+                        expirationDate: result.expirationDate,
+                        frozen: result.frozen
                     });
                     this.ingredientAutoComplete.setValue(result.ingredientName);
                 });

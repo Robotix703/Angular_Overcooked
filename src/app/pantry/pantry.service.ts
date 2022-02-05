@@ -25,7 +25,7 @@ export class PantryService {
         {
             ingredientName: ingredientName,
             quantity: quantity.toString(),
-            expirationDate: expirationDate.toString(),
+            expirationDate: expirationDate.toLocaleDateString("fr-FR", { timeZone: "Europe/Paris" }),
             frozen: frozen
         })
         .subscribe((responseData: Pantry) => {
@@ -34,7 +34,7 @@ export class PantryService {
     }
 
     getPantryByID(pantryID: string){
-        return this.http.get<{_id: string, ingredientID: string, ingredientName: string, quantity: number, expirationDate: Date}>(URL_BACKEND + `/byID?pantryID=${pantryID}`);
+        return this.http.get<{_id: string, ingredientID: string, ingredientName: string, quantity: number, expirationDate: Date, frozen: boolean}>(URL_BACKEND + `/byID?pantryID=${pantryID}`);
     }
 
     freezePantry(pantryID: string){
