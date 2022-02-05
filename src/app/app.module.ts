@@ -21,6 +21,7 @@ import { InstructionModule } from './instruction/instruction.module';
 import { RecipeModule } from './recipe/recipe.module';
 import { MealModule } from './meal/meal.module';
 import { PantryModule } from './pantry/pantry.module';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { PantryModule } from './pantry/pantry.module';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: MAT_DATE_LOCALE, useValue: 'fr-FR' }
   ],
   bootstrap: [AppComponent],
   entryComponents: [ErrorComponent]
