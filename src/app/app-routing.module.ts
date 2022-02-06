@@ -17,6 +17,7 @@ import { MealCreateComponent } from './meal/create/meal-create.component';
 import { MealListComponent } from './meal/list/meal-list.component';
 import { PantryListComponent } from './pantry/list/pantry-list.component';
 import { PantryCreateComponent } from './pantry/create/pantry-create.component';
+import { TodoItemListComponent } from './todoItem/list/todoItem-list.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -92,6 +93,14 @@ const routes: Routes = [
       },
       {
         path:'edit/:pantryID', component: PantryCreateComponent
+      }
+    ]
+  },
+  {
+    path:'todoItem',
+    children: [
+      {
+        path:'list', component: TodoItemListComponent
       }
     ]
   }
