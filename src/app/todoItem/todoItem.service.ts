@@ -11,4 +11,12 @@ const URL_BACKEND = environment.apiURL + "todoItem/";
 
 export class TodoItemService {
     constructor(private http: HttpClient, private router: Router) { }
+
+    getTodoItem(){
+        return this.http.get<TodoItem[]>(URL_BACKEND);
+    }
+
+    deleteTodoItem(todoItemID: string){
+        return this.http.delete(URL_BACKEND + todoItemID);
+    }
 }

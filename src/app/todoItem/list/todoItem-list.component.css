@@ -1,0 +1,12 @@
+mat-card {
+    margin-top: 1rem;
+    max-width: 20rem;
+    margin: 10px;
+}
+
+mat-accordion {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
