@@ -38,7 +38,7 @@ export class PantryCreateComponent implements OnInit {
                     this.formulaire.setValue({
                         quantity: null,
                         expirationDate: null,
-                        frozen: null
+                        frozen: false
                     });
                     this.ingredientAutoComplete.setValue(result.name);
                 });
@@ -51,7 +51,7 @@ export class PantryCreateComponent implements OnInit {
                     this.formulaire.setValue({
                         quantity: result.quantity,
                         expirationDate: result.expirationDate,
-                        frozen: result.frozen
+                        frozen: result.frozen ?? false
                     });
                     this.ingredientAutoComplete.setValue(result.ingredientName);
                 });
