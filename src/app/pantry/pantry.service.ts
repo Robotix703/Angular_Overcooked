@@ -20,12 +20,12 @@ export class PantryService {
         return this.http.delete(URL_BACKEND + pantryID);
     }
 
-    createPantry(ingredientName: string, quantity: number, expirationDate: Date, frozen: boolean){
+    createPantry(ingredientName: string, quantity: number, expirationDate: Date | null, frozen: boolean){
         this.http.post<Pantry>(URL_BACKEND + "createByIngredientName", 
         {
             ingredientName: ingredientName,
             quantity: quantity.toString(),
-            expirationDate: expirationDate.toLocaleDateString("fr-FR", { timeZone: "Europe/Paris" }),
+            expirationDate: expirationDate?.toLocaleDateString("fr-FR", { timeZone: "Europe/Paris" }),
             frozen: frozen
         })
         .subscribe((responseData: Pantry) => {
