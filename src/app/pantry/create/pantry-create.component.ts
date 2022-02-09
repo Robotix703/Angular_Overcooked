@@ -17,9 +17,12 @@ export class PantryCreateComponent implements OnInit {
 
     formulaire: FormGroup = new FormGroup({});
     ingredientAutoComplete = new FormControl();
-    
+
     options: string[] = [];
     filteredOptions: Observable<string[]> = new Observable;
+
+    editMode: boolean = false;
+    pantryID: string = "";
 
     constructor(public PantryService: PantryService, public route: ActivatedRoute, public IngredientService: IngredientService) { }
 
@@ -45,9 +48,10 @@ export class PantryCreateComponent implements OnInit {
             }
 
             if (paramMap.has("pantryID")) {
-                let pantryID = paramMap.get('pantryID') || "";
+                this.editMode = true;
+                this.pantryID = paramMap.get('pantryID') || "";
 
-                this.PantryService.getPantryByID(pantryID).subscribe((result) => {
+                this.PantryService.getPantryByID(this.pantryID).subscribe((result) => {
                     this.formulaire.setValue({
                         quantity: result.quantity,
                         expirationDate: result.expirationDate,
@@ -72,18 +76,28 @@ export class PantryCreateComponent implements OnInit {
                 validators: [Validators.required]
             }),
             expirationDate: new FormControl(new Date()),
-            frozen : new FormControl(null, {
+            frozen: new FormControl(null, {
                 validators: []
             })
         });
     }
 
     onSavePantry() {
-        this.PantryService.createPantry(
-            this.ingredientAutoComplete.value, 
-            this.formulaire.value.quantity, 
-            this.formulaire.value.expirationDate, 
-            this.formulaire.value.frozen
-        );
+        if (this.editMode) {
+            this.PantryService.updatePantry(
+                this.pantryID,
+                this.ingredientAutoComplete.value,
+                this.formulaire.value.quantity,
+                this.formulaire.value.expirationDate,
+                this.formulaire.value.frozen
+            )
+        } else {
+            this.PantryService.createPantry(
+                this.ingredientAutoComplete.value,
+                this.formulaire.value.quantity,
+                this.formulaire.value.expirationDate,
+                this.formulaire.value.frozen
+            );
+        }
     }
 }

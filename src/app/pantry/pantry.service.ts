@@ -44,4 +44,16 @@ export class PantryService {
     refreshTodoist(){
         return this.http.post<{result: string}>(URL_BACKEND + "refreshTodoist", {});
     }
+
+    updatePantry(pantryID: string, ingredientName: string, quantity: number, expirationDate: Date | null, frozen: boolean){
+        this.http.put<string>(URL_BACKEND + pantryID, {
+            ingredientName: ingredientName,
+            quantity: quantity,
+            expirationDate: expirationDate?.toLocaleDateString("fr-FR", { timeZone: "Europe/Paris" }),
+            frozen: frozen
+        })
+        .subscribe((result) => {
+            this.router.navigate(["/pantry/list"]);
+        })
+    }
 }
