@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { environment } from "../../environments/environment";
 
-import { Meal, PrettyMeal } from "./meal.model";
+import { Meal, PrettyMeal, stateMeal } from "./meal.model";
 
 const URL_BACKEND = environment.apiURL + "meal/";
 
@@ -26,7 +26,7 @@ export class MealService {
     }
 
     getMealsDisplayable(){
-        return this.http.get<PrettyMeal[]>(URL_BACKEND + "displayable");
+        return this.http.get<stateMeal[]>(URL_BACKEND + "displayable");
     }
 
     consumeMeal(mealID: string){

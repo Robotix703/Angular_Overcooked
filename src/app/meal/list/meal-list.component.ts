@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 
-import { PrettyMeal } from '../meal.model';
+import { PrettyMeal, stateMeal } from '../meal.model';
 import { MealService } from "../meal.service";
 
 @Component({
@@ -48,15 +48,15 @@ export class MealListComponent implements OnInit, OnDestroy {
 
     getMeals(){
         this.MealService.getMealsDisplayable()
-        .subscribe((data: PrettyMeal[]) => {
+        .subscribe((data: stateMeal[]) => {
             let mealToDisplay : PrettyMeal[] = data.map(meal => {
                 return {
                     _id: meal._id,
                     title: meal.title,
                     numberOfLunch: meal.numberOfLunch,
                     imagePath: meal.imagePath,
-                    state: meal.state,
-                    background: meal.state ? "green" : "red"
+                    state: !(meal.state.ingredientUnavailable.length > 0),
+                    background: !(meal.state.ingredientUnavailable.length > 0) ? "green" : "red"
                 }
             })
             this.displayMeals(mealToDisplay);

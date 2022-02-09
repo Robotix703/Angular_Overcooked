@@ -12,3 +12,16 @@ export interface PrettyMeal {
     state: boolean,
     background: string
 }
+
+export interface stateMeal {
+    _id: string,
+    title: string,
+    numberOfLunch: number,
+    imagePath: string,
+    state: {
+        ingredientAvailable: any,
+        ingredientAlmostExpire: any,
+        ingredientUnavailable: any
+    },
+    background: string
+}
