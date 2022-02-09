@@ -1,5 +1,6 @@
 <div class="recipe-header">
-    <h2 class="title">Création Recette</h2>
+    <h2 class="title" *ngIf="editMode == false">Création Recette</h2>
+    <h2 class="title" *ngIf="editMode == true">Edition Recette</h2>
 </div>
 
 <div class="main-div">

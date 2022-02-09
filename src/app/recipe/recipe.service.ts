@@ -39,4 +39,17 @@ export class RecipeService {
     getFilteredRecipe(category: string, name: string, pageSize: number, currentPage: number){
         return this.http.get<{ recipes: any, count: number }>(URL_BACKEND + `/filter?category=${category}&name=${name}&pageSize=${pageSize}&currentPage=${currentPage}`);
     }
+
+    updateRecipe(recipeID: string, title: string, numberOfLunch: number, category: string, duration: number, score: number = 0){
+        this.http.put<string>(URL_BACKEND + recipeID, {
+            title: title,
+            numberOfLunch: numberOfLunch,
+            category: category,
+            duration: duration,
+            score: score
+        })
+        .subscribe((result) => {
+            this.router.navigate(["/recipe/list"]);
+        })
+    }
 }

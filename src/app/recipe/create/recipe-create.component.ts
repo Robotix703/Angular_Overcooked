@@ -18,18 +18,24 @@ export class RecipeCreateComponent implements OnInit {
 
     formulaire: FormGroup = new FormGroup({});
     imagePreview: string = "";
+    editMode: boolean = false;
+    recipeID: string = "";
 
     constructor(public RecipeService: RecipeService, public route: ActivatedRoute) { }
 
     ngOnInit() {
         this.route.paramMap.subscribe((paramMap: ParamMap) => {
             if (paramMap.has("recipeID")) {
-                const recipeID = paramMap.get('recipeID') || "";
-                this.RecipeService.getRecipe(recipeID).subscribe((recipe : Recipe) => {
+                this.editMode = true;
+                this.recipeID = paramMap.get('recipeID') || "";
+                this.RecipeService.getRecipe(this.recipeID).subscribe((recipe: Recipe) => {
                     this.formulaire.setValue({
                         title: recipe.title,
                         numberOfLunch: recipe.numberOfLunch,
-                        image: recipe.imagePath
+                        image: recipe.imagePath,
+                        category: recipe.category,
+                        duration: recipe.duration,
+                        score: recipe.score
                     });
                 });
             }
@@ -71,13 +77,22 @@ export class RecipeCreateComponent implements OnInit {
     onSavePost() {
         if (this.formulaire.invalid) return;
 
-        this.RecipeService.addRecipe(
-            this.formulaire.value.title, 
-            this.formulaire.value.numberOfLunch, 
-            this.formulaire.value.image, 
-            this.formulaire.value.category,
-            this.formulaire.value.duration,
-            this.formulaire.value.score);
-        this.formulaire.reset();
+        if (this.editMode) {
+            this.RecipeService.updateRecipe(
+                this.recipeID,
+                this.formulaire.value.title,
+                this.formulaire.value.numberOfLunch,
+                this.formulaire.value.category,
+                this.formulaire.value.duration,
+                this.formulaire.value.score);
+        } else {
+            this.RecipeService.addRecipe(
+                this.formulaire.value.title,
+                this.formulaire.value.numberOfLunch,
+                this.formulaire.value.image,
+                this.formulaire.value.category,
+                this.formulaire.value.duration,
+                this.formulaire.value.score);
+        }
     }
 }
