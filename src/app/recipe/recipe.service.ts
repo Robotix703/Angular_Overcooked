@@ -28,16 +28,15 @@ export class RecipeService {
             });
     }
 
-    getRecipes(pageSize: number, currentPage: number){
-        const queryParams = `?pageSize=${pageSize}&currentPage=${currentPage}`;
-        return this.http.get<{ recipes: any, count: number }>(URL_BACKEND + queryParams);
-    }
-
     deleteRecipe(recipeID: string){
         return this.http.delete(URL_BACKEND + recipeID);
     }
 
     getRecipe(recipeID: string){
         return this.http.get<Recipe>(URL_BACKEND + "/byID?recipeID=" + recipeID);
+    }
+
+    getFilteredRecipe(category: string, name: string, pageSize: number, currentPage: number){
+        return this.http.get<{ recipes: any, count: number }>(URL_BACKEND + `/filter?category=${category}&name=${name}&pageSize=${pageSize}&currentPage=${currentPage}`);
     }
 }

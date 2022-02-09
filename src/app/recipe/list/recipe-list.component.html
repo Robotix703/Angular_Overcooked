@@ -1,8 +1,24 @@
 <div class="recipe-header">
-  <a mat-raised-button color="primary" routerLink="/recipe/create">Créer Recette</a>
+  <mat-form-field appearance="fill">
+    <mat-label>Nom</mat-label>
+    <input matInput placeholder="Recherche" id="search" (keyup)="search($event)">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
 
-  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" style="background-color: #303030;"
-    (page)="getRecipesData($event)">
+  <mat-form-field appearance="fill" style="margin-left: 1rem;">
+    <mat-label>Catégorie</mat-label>
+    <mat-select (selectionChange)="selectCategory($event.value)">
+      <mat-option value="">Toutes</mat-option>
+      <mat-option *ngFor="let categoryDisplayed of categoriesRecipe" [value]="categoryDisplayed">
+        {{categoryDisplayed}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <a mat-raised-button color="primary" style="margin-left: 1rem;" routerLink="/recipe/create">Créer Recette</a>
+
+  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+    style="background-color: #303030;" (page)="getRecipesData($event)">
   </mat-paginator>
 </div>
 
@@ -35,9 +51,13 @@
     <hr>
 
     <mat-card-actions>
-      <a mat-raised-button color="primary" [routerLink]="['/recipe/edit', recipe._id]"><mat-icon>edit</mat-icon></a>
+      <a mat-raised-button color="primary" [routerLink]="['/recipe/edit', recipe._id]">
+        <mat-icon>edit</mat-icon>
+      </a>
       <a mat-raised-button color="secondary" [routerLink]="['/instruction/list', recipe._id]">Instructions</a>
-      <button mat-raised-button color="warn" (click)="onDelete(recipe._id)"><mat-icon>delete</mat-icon></button>
+      <button mat-raised-button color="warn" (click)="onDelete(recipe._id)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </mat-card-actions>
   </mat-card>
 </mat-accordion>

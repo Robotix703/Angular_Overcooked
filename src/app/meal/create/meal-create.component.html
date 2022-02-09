@@ -1,7 +1,23 @@
 <div class="meal-header">
     <h2 class="title">Liste des recettes</h2>
-    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" style="background-color: #303030;"
-        (page)="getRecipesData($event)">
+    <mat-form-field appearance="fill">
+        <mat-label>Nom</mat-label>
+        <input matInput placeholder="Recherche" id="search" (keyup)="search($event)">
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="margin-left: 1rem;">
+        <mat-label>Catégorie</mat-label>
+        <mat-select (selectionChange)="selectCategory($event.value)">
+            <mat-option value="">Toutes</mat-option>
+            <mat-option *ngFor="let categoryDisplayed of categoriesRecipe" [value]="categoryDisplayed">
+                {{categoryDisplayed}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+        style="background-color: #303030;" (page)="getRecipesData($event)">
     </mat-paginator>
 </div>
 
