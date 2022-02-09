@@ -51,4 +51,18 @@ export class IngredientService {
     getAllIngredientsName(){
         return this.http.get<string[]>(URL_BACKEND + "allNames");
     }
+
+    updateIngredient(ingredientID: string, name: string, consumable: boolean, category: string, unitOfMeasure: string, shelfLife: number, freezable: boolean){
+        this.http.put<string>(URL_BACKEND + ingredientID, {
+            name: name,
+            consumable: consumable,
+            category: category,
+            unitOfMeasure: unitOfMeasure,
+            shelfLife: shelfLife,
+            freezable: freezable
+        })
+        .subscribe((result: string) => {
+            this.router.navigate(["/ingredient/list"]);
+        })
+    }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { IngredientService } from '../ingredient.service';
-import { categories, unitOfMeasures } from "../ingredient.model";
+import { categories, Ingredient, unitOfMeasures } from "../ingredient.model";
 
 import { mimeType } from "./mime-type.validator";
 
@@ -20,9 +20,32 @@ export class IngredientCreateComponent implements OnInit {
   ingredientCategories = categories;
   ingredientUnitOfMeasures = unitOfMeasures;
 
-  constructor(public IngredientService: IngredientService, public route: ActivatedRoute) {}
+  editMode: boolean = false;
+  ingredientID: string = "";
+
+  constructor(public IngredientService: IngredientService, public route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has("ingredientID")) {
+        this.editMode = true;
+        this.ingredientID = paramMap.get('ingredientID') || "";
+
+        this.IngredientService.getIngredientByID(this.ingredientID)
+          .subscribe((result: Ingredient) => {
+            this.formulaire.setValue({
+              name: result.name,
+              consumable: result.consumable,
+              category: result.category,
+              unitOfMeasure: result.unitOfMeasure,
+              image: result.imagePath,
+              shelfLife: result.shelfLife,
+              freezable: result.freezable
+            });
+          });
+      }
+    });
+
     this.formulaire = new FormGroup({
       name: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(3)]
@@ -39,7 +62,7 @@ export class IngredientCreateComponent implements OnInit {
       shelfLife: new FormControl(null, {
         validators: [Validators.required]
       }),
-      image: new FormControl(null, {validators: [Validators.required], asyncValidators: [mimeType]}),
+      image: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] }),
       freezable: new FormControl(null, {
         validators: []
       })
@@ -50,7 +73,7 @@ export class IngredientCreateComponent implements OnInit {
     const file = (event.target as HTMLInputElement).files![0];
     const reader = new FileReader();
 
-    this.formulaire.patchValue({image: file});
+    this.formulaire.patchValue({ image: file });
     this.formulaire.get('image')!.updateValueAndValidity();
 
     reader.onload = () => {
@@ -59,19 +82,29 @@ export class IngredientCreateComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  onSavePost(){
-    if(this.formulaire.invalid) return;
+  onSavePost() {
+    if (this.formulaire.invalid) return;
 
-    this.IngredientService.addIngredient(
-      this.formulaire.value.name, 
-      this.formulaire.value.consumable ? this.formulaire.value.consumable : false, 
-      this.formulaire.value.image,
-      this.formulaire.value.category,
-      this.formulaire.value.unitOfMeasure,
-      this.formulaire.value.shelfLife,
-      this.formulaire.value.freezable ? this.formulaire.value.freezable : false
-    );
-
-    this.formulaire.reset();
+    if (this.editMode) {
+      this.IngredientService.updateIngredient(
+        this.ingredientID,
+        this.formulaire.value.name,
+        this.formulaire.value.consumable ? this.formulaire.value.consumable : false,
+        this.formulaire.value.category,
+        this.formulaire.value.unitOfMeasure,
+        this.formulaire.value.shelfLife,
+        this.formulaire.value.freezable ? this.formulaire.value.freezable : false
+      )
+    } else {
+      this.IngredientService.addIngredient(
+        this.formulaire.value.name,
+        this.formulaire.value.consumable ? this.formulaire.value.consumable : false,
+        this.formulaire.value.image,
+        this.formulaire.value.category,
+        this.formulaire.value.unitOfMeasure,
+        this.formulaire.value.shelfLife,
+        this.formulaire.value.freezable ? this.formulaire.value.freezable : false
+      );
+    }
   }
 }

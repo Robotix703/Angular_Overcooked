@@ -40,6 +40,9 @@ const routes: Routes = [
       },
       {
         path:'list', component: IngredientListComponent
+      },
+      {
+        path:'edit/:ingredientID', component: IngredientCreateComponent
       }
     ]
   },

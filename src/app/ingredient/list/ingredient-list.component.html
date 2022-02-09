@@ -40,7 +40,10 @@
 
             <hr>
             <mat-card-actions>
-                <button mat-raised-button color="warn" (click)="onDelete(ingredient)">Supprimer</button>
+                <a mat-raised-button color="primary" [routerLink]="['/ingredient/edit', ingredient._id]">
+                    <mat-icon>edit</mat-icon>
+                  </a>
+                <button mat-raised-button color="warn" (click)="onDelete(ingredient)"><mat-icon>delete</mat-icon></button>
             </mat-card-actions>
         </mat-card>
     </mat-accordion>
