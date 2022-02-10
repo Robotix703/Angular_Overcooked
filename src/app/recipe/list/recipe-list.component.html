@@ -54,6 +54,9 @@
       <a mat-raised-button color="primary" [routerLink]="['/recipe/edit', recipe._id]">
         <mat-icon>edit</mat-icon>
       </a>
+      <a mat-raised-button color="primary" [routerLink]="['/recipe/display', recipe._id]">
+        <mat-icon>remove_red_eye</mat-icon>
+      </a>
       <button mat-raised-button color="warn" (click)="onDelete(recipe._id)">
         <mat-icon>delete</mat-icon>
       </button>

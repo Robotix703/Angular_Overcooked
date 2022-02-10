@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
 import { environment } from "../../environments/environment";
 
-import { Recipe } from './recipe.model';
+import { PrettyRecipe, Recipe } from './recipe.model';
 
 const URL_BACKEND = environment.apiURL + "recipe/";
 
@@ -51,5 +51,9 @@ export class RecipeService {
         .subscribe((result) => {
             this.router.navigate(["/recipe/list"]);
         })
+    }
+
+    getPrettyRecipe(recipeID: string = "", mealID: string = ""){
+        return this.http.get<PrettyRecipe>(URL_BACKEND + `/prettyRecipe?recipeID=${recipeID}&mealID=${mealID}`);
     }
 }
