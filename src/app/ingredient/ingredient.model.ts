@@ -13,11 +13,16 @@ export const categories = [
   "Viande",
   "Légumes",
   "Céréaliers",
+  "Produit Laitier",
+  "Matière grasse",
   "Autres"
 ]
 
 export const unitOfMeasures = [
   "pc",
   "g",
-  "L"
+  "L",
+  "cL",
+  "cs",
+  "cc"
 ]
