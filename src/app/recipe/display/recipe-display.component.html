@@ -15,7 +15,7 @@
 <mat-accordion *ngIf="prettyRecipeData.instructions.length > 0" style="margin-top: 1rem;">
     <mat-card *ngFor="let instruc of prettyRecipeData.instructions" style="max-width: 20rem;">
         <mat-dialog-content>
-            <div class="instruction-text">
+            <div class="instruction-text" style="white-space: pre-line;">
                 {{ instruc.text }}
             </div>
             <div *ngIf="instruc.cookingTime" style="margin-bottom: 1rem;">

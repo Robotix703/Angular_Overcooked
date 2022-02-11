@@ -6,12 +6,8 @@
 
 <mat-accordion *ngIf="instructions.length > 0">
   <mat-card *ngFor="let instruc of instructions" style="max-width: 20rem;">
-    <mat-card-title>
-      Test
-    </mat-card-title>
-
     <mat-dialog-content>
-      <div class="instruction-text">
+      <div class="instruction-text" style="white-space: pre-line;">
         {{ instruc.text }}
       </div>
       <div *ngIf="instruc.cookingTime" style="margin-bottom: 1rem;">
