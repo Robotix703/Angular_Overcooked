@@ -39,7 +39,7 @@ export class IngredientCreateComponent implements OnInit {
               category: result.category,
               unitOfMeasure: result.unitOfMeasure,
               image: result.imagePath,
-              shelfLife: result.shelfLife,
+              shelfLife: result.shelfLife ?? null,
               freezable: result.freezable
             });
           });
@@ -60,7 +60,7 @@ export class IngredientCreateComponent implements OnInit {
         validators: [Validators.required]
       }),
       shelfLife: new FormControl(null, {
-        validators: [Validators.required]
+        validators: []
       }),
       image: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] }),
       freezable: new FormControl(null, {
