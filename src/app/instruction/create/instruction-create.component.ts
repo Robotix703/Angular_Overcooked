@@ -73,7 +73,7 @@ export class InstructionCreateComponent implements OnInit {
 
                         for (let i = 0; i < result.composition.length; i++) {
                             this.ingredients.push({
-                                ingredientName: result.composition[i].name,
+                                ingredientName: result.composition[i].name + " - " + result.composition[i].unitOfMeasure,
                                 quantity: result.composition[i].quantity
                             });
                         }
@@ -93,7 +93,7 @@ export class InstructionCreateComponent implements OnInit {
             })
         })
 
-        this.IngredientService.getAllIngredientsName().subscribe((result) => {
+        this.IngredientService.getAllIngredientsForAutocomplete().subscribe((result) => {
             this.options = result;
 
             this.filteredOptions = this.ingredientAutoComplete.valueChanges.pipe(
@@ -126,18 +126,23 @@ export class InstructionCreateComponent implements OnInit {
     onSavePost() {
         if (this.productForm.invalid) return;
 
+        let simpleIngredients = [...this.ingredients];
+        simpleIngredients.forEach((part, index) => {
+            simpleIngredients[index].ingredientName = part.ingredientName.split(" - ")[0];
+        })
+
         if (this.editMode) {
             this.InstructionService.updateInstruction(
                 this.instructionID,
                 this.productForm.value.text,
-                this.ingredients,
+                simpleIngredients,
                 this.productForm.value.order,
                 this.productForm.value.cookingTime
             );
         } else {
             this.InstructionService.addInstruction(
                 this.productForm.value.text,
-                this.ingredients,
+                simpleIngredients,
                 this.recipeID,
                 this.productForm.value.order,
                 this.productForm.value.cookingTime

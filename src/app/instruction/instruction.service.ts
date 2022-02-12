@@ -30,7 +30,7 @@ export class InstructionService {
     }
 
     getInstructions(recipeID: string){
-        return this.http.get<{ Instructions: any }>(URL_BACKEND + `byRecipeID?recipeID=${recipeID}`);
+        return this.http.get<PrettyInstruction[]>(URL_BACKEND + `byRecipeID?recipeID=${recipeID}`);
     }
 
     deleteInstruction(instructionID: string){

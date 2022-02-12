@@ -52,6 +52,10 @@ export class IngredientService {
         return this.http.get<string[]>(URL_BACKEND + "allNames");
     }
 
+    getAllIngredientsForAutocomplete(){
+        return this.http.get<string[]>(URL_BACKEND + "forAutocomplete");
+    }
+
     updateIngredient(ingredientID: string, name: string, consumable: boolean, category: string, unitOfMeasure: string, shelfLife: number | null, freezable: boolean){
         this.http.put<string>(URL_BACKEND + ingredientID, {
             name: name,

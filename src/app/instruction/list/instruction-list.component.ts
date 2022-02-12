@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from 'src/app/auth/auth.service';
+import { Composition, PrettyInstruction } from '../instruction.model';
 import { InstructionService } from '../instruction.service';
 
 @Component({
@@ -30,7 +31,7 @@ export class InstructionListComponent implements OnInit, OnDestroy {
         public InstructionService: InstructionService) { }
 
     displayedColumns: string[] = ['name', 'quantity'];
-    dataSource = [];
+    dataSource: Composition[] = [];
 
     ngOnInit() {
         this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -65,10 +66,13 @@ export class InstructionListComponent implements OnInit, OnDestroy {
 
     getInstructions(){
         this.InstructionService.getInstructions(this.recipeID)
-                .subscribe((instructionData: { Instructions: any }) => {
-                    this.instructions = instructionData.Instructions;
-                    this.totalInstructions = instructionData.Instructions.length;
-                    for(let instruction of instructionData.Instructions){
+                .subscribe((instructionData: PrettyInstruction[]) => {
+                    this.instructions = instructionData;
+                    this.totalInstructions = instructionData.length;
+                    for(let instruction of instructionData){
+                        instruction.composition.forEach((element: Composition, index: number) => {
+                            instruction.composition[index].quantity = element.quantity + " - " + element.unitOfMeasure;
+                        });
                         this.dataSource = instruction.composition;
                     }
                 });

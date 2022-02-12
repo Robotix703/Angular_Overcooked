@@ -10,7 +10,8 @@ export interface Instruction {
 export interface Composition {
     name: string
     imagePath: string
-    quantity: number
+    quantity: any
+    unitOfMeasure: string
 }
 
 export interface PrettyInstruction {
