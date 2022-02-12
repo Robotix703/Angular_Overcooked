@@ -8,9 +8,9 @@ export interface Instruction {
 }
 
 export interface Composition {
-    name: string[]
-    imagePath: string[]
-    quantity: number[]
+    name: string
+    imagePath: string
+    quantity: number
 }
 
 export interface PrettyInstruction {

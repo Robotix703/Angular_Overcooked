@@ -55,6 +55,9 @@ const routes: Routes = [
       },
       {
         path:'list/:recipeID', component: InstructionListComponent
+      },
+      {
+        path:'edit/:instructionID', component: InstructionCreateComponent
       }
     ]
   },

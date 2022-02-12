@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { environment } from "../../environments/environment";
 
-import { Instruction } from './instruction.model';
+import { Instruction, PrettyInstruction } from './instruction.model';
 
 const URL_BACKEND = environment.apiURL + "instruction/";
 
@@ -39,5 +39,23 @@ export class InstructionService {
 
     getInstructionCount(recipeID: string){
         return this.http.get<number>(URL_BACKEND + `countForRecipe?recipeID=${recipeID}`);
+    }
+
+    getPrettyInstruction(instructionID: string){
+        return this.http.get<PrettyInstruction>(URL_BACKEND + `byID?instructionID=${instructionID}`);
+    }
+
+    updateInstruction(instructionID: string, text: string, ingredients: {ingredientName: string, quantity: number}[], order: number, cookingTime: number = 0){
+        let instructionData : any = {
+            text: text,
+            ingredients: ingredients,
+            order: order
+        }
+        if(cookingTime != 0) instructionData.cookingTime = cookingTime;
+
+        this.http.put<string>(URL_BACKEND + instructionID, instructionData)
+            .subscribe((responseData: string) => {
+                this.router.navigate(["/"]);
+            });
     }
 }

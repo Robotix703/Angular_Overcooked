@@ -33,7 +33,8 @@
         </table>
 
         <hr>
-        <button mat-raised-button color="warn" (click)="onDelete(instruc._id)">Delete</button>
+        <a mat-raised-button color="primary" [routerLink]="['/instruction/edit/', instruc._id]"><mat-icon>edit</mat-icon></a>
+        <button mat-raised-button color="warn" style="margin-left: 1rem;" (click)="onDelete(instruc._id)"><mat-icon>delete</mat-icon></button>
       </div>
     </mat-dialog-content>
   </mat-card>

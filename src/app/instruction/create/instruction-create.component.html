@@ -20,6 +20,7 @@
 
             <h2>Ajouter un ingrédient</h2>
             <div class="onSameLine">
+                <!--Name-->
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Entrez un nom</mat-label>
                     <input type="text" placeholder="Nom" aria-label="Nom" matInput [formControl]="ingredientAutoComplete"
@@ -30,8 +31,9 @@
                         </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
+                <!--Quantity-->
                 <mat-form-field appearance="fill">
-                    <input matInput type="number" placeholder="Quantité" formControlName="quantity">
+                    <input matInput type="number" placeholder="Quantité"  [formControl]="quantity">
                 </mat-form-field>
                 <button mat-raised-button color="accent" type="button" style="margin-top: 1rem; margin-bottom: 1rem;"
                     (click)="addIngredient()">Ajouter ingrédient</button>
