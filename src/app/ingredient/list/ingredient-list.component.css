@@ -17,7 +17,7 @@ mat-accordion {
 }
 
 .ingredient-image {
-  max-width: 100%;
+  max-width: 200px;
   height: auto;
   size: cover;
 }
