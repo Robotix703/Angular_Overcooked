@@ -1,15 +1,69 @@
 <h2 class="title">{{prettyRecipeData.category}} - {{prettyRecipeData.title}}</h2>
 
-<div>
-    <div class="recipeInfo">
-        Nombre de repas : {{prettyRecipeData.numberOfLunch}}
-    </div>
-    <div class="recipeInfo">
-        Durée : {{prettyRecipeData.duration}} Minutes
-    </div>
-    <div class="recipeInfo">
-        Note : {{prettyRecipeData.score}}/10
-    </div>
+<div style="height: auto;">
+    <mat-grid-list cols="4" rowHeight="1:1">
+        <mat-grid-tile [colspan]=1>
+            <div style="width: 80%;">
+                <div class="recipeInfo">
+                    Nombre de repas : {{prettyRecipeData.numberOfLunch}}
+                </div>
+                <div class="recipeInfo">
+                    Durée : {{prettyRecipeData.duration}} Minutes
+                </div>
+                <div class="recipeInfo">
+                    Note : {{prettyRecipeData.score}}/10
+                </div>
+            </div>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]=1>
+            <mat-list style="width: 80%;">
+                <div *ngFor="let ingredient of ingredientListPart1">
+                    <mat-list-item style="margin-top: 2rem; margin-bottom: 1rem;">
+                        <div style="margin-right: 1rem;">
+                            <img class="ingredient-image" [src]="ingredient.ingredient.imagePath" [alt]="ingredient.ingredient.name">
+                        </div>
+                        <div>
+                            {{ingredient.ingredient.name}} - {{ingredient.quantity}} {{ingredient.ingredient.unitOfMeasure}}
+                        </div>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                </div>
+            </mat-list>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]=1>
+            <mat-list style="width: 80%;">
+                <div *ngFor="let ingredient of ingredientListPart2">
+                    <mat-list-item style="margin-top: 2rem; margin-bottom: 1rem;">
+                        <div style="margin-right: 1rem;">
+                            <img class="ingredient-image" [src]="ingredient.ingredient.imagePath" [alt]="ingredient.ingredient.name">
+                        </div>
+                        <div>
+                            {{ingredient.ingredient.name}} - {{ingredient.quantity}} {{ingredient.ingredient.unitOfMeasure}}
+                        </div>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                </div>
+            </mat-list>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]=1>
+            <mat-list style="width: 80%;">
+                <div *ngFor="let ingredient of ingredientListPart3">
+                    <mat-list-item style="margin-top: 2rem; margin-bottom: 1rem;">
+                        <div style="margin-right: 1rem;">
+                            <img class="ingredient-image" [src]="ingredient.ingredient.imagePath" [alt]="ingredient.ingredient.name">
+                        </div>
+                        <div>
+                            {{ingredient.ingredient.name}} - {{ingredient.quantity}} {{ingredient.ingredient.unitOfMeasure}}
+                        </div>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                </div>
+            </mat-list>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>
 
 <mat-accordion *ngIf="prettyRecipeData.instructions.length > 0" style="margin-top: 1rem;">

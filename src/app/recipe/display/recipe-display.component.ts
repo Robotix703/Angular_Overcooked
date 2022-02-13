@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from 'src/app/auth/auth.service';
+import { Ingredient } from 'src/app/ingredient/ingredient.model';
 import { PrettyRecipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 
@@ -29,6 +30,9 @@ export class RecipeDisplayComponent implements OnInit, OnDestroy {
 
     displayedColumns: string[] = ['name', 'quantity'];
     dataSource: any = [];
+    ingredientListPart1: {ingredient: Ingredient, quantity: number}[] = [];
+    ingredientListPart2: {ingredient: Ingredient, quantity: number}[] = [];
+    ingredientListPart3: {ingredient: Ingredient, quantity: number}[] = [];
 
     private authStatusSub: Subscription = new Subscription();
 
@@ -52,6 +56,11 @@ export class RecipeDisplayComponent implements OnInit, OnDestroy {
                         this.dataSource = instruction.composition;
                     }
                 });
+
+                this.recipeService.getIngredientListForRecipe(recipeID)
+                .subscribe((result) => {
+                    this.splitIngredientList(result);
+                })
             }
 
             if (paramMap.has("mealID")) {
@@ -65,11 +74,22 @@ export class RecipeDisplayComponent implements OnInit, OnDestroy {
                         this.dataSource = instruction.composition;
                     }
                 });
+
+                this.recipeService.getIngredientListForRecipe(mealID)
+                .subscribe((result) => {
+                    this.splitIngredientList(result);
+                })
             }
         });
     }
 
     ngOnDestroy() {
         this.authStatusSub.unsubscribe();
+    }
+
+    splitIngredientList(ingredientListFetch: {ingredient: Ingredient, quantity: number}[]){
+        this.ingredientListPart1 = ingredientListFetch.slice(0, 3);
+        this.ingredientListPart2 = ingredientListFetch.slice(4, 7);
+        this.ingredientListPart3 = ingredientListFetch.slice(8, 11);
     }
 }

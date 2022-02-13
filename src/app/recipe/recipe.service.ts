@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from "../../environments/environment";
 
 import { PrettyRecipe, Recipe } from './recipe.model';
+import { Ingredient } from '../ingredient/ingredient.model';
 
 const URL_BACKEND = environment.apiURL + "recipe/";
 
@@ -55,5 +56,9 @@ export class RecipeService {
 
     getPrettyRecipe(recipeID: string = "", mealID: string = ""){
         return this.http.get<PrettyRecipe>(URL_BACKEND + `/prettyRecipe?recipeID=${recipeID}&mealID=${mealID}`);
+    }
+
+    getIngredientListForRecipe(recipeID: string = "", mealID: string = ""){
+        return this.http.get<{ingredient: Ingredient, quantity: number}[]>(URL_BACKEND + `/ingredientNeeded?recipeID=${recipeID}&mealID=${mealID}`);
     }
 }

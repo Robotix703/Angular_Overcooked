@@ -39,3 +39,8 @@ table {
     position: relative;
     text-align: center;
 }
+
+.ingredient-image{
+    max-width: 75px;
+    height: auto;
+}
