@@ -51,7 +51,6 @@ export class InstructionCreateComponent implements OnInit {
                     this.InstructionService.getInstructionCount(this.recipeID).subscribe((count) => {
                         this.productForm.setValue({
                             text: null,
-                            quantity: null,
                             cookingTime: null,
                             order: count + 1
                         })
