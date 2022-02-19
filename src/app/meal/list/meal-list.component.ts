@@ -50,13 +50,30 @@ export class MealListComponent implements OnInit, OnDestroy {
         this.MealService.getMealsDisplayable()
         .subscribe((data: stateMeal[]) => {
             let mealToDisplay : PrettyMeal[] = data.map(meal => {
+                let missingIngredient : {
+                    ingredientName: string,
+                    quantity: number,
+                    unitOfMeasure: string
+                }[] = [];
+
+                if(meal.state.ingredientUnavailable.length > 0){
+                    meal.state.ingredientUnavailable.forEach((element: any) => {
+                        missingIngredient.push({
+                            ingredientName: element.ingredient.name,
+                            quantity: element.quantity,
+                            unitOfMeasure: element.ingredient.unitOfMeasure
+                        })
+                    });
+                }
+
                 return {
                     _id: meal._id,
                     title: meal.title,
                     numberOfLunch: meal.numberOfLunch,
                     imagePath: meal.imagePath,
                     state: !(meal.state.ingredientUnavailable.length > 0),
-                    background: !(meal.state.ingredientUnavailable.length > 0) ? "green" : "red"
+                    background: !(meal.state.ingredientUnavailable.length > 0) ? "green" : "red",
+                    missingIngredients: missingIngredient
                 }
             })
             this.displayMeals(mealToDisplay);

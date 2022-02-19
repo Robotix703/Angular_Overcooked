@@ -21,8 +21,21 @@
 
         <mat-card-actions>
             <a mat-raised-button color="warn" *ngIf="meal.state" (click)="consume(meal._id)">Consommer</a>
-            <a mat-raised-button color="primary" *ngIf="meal.state" [routerLink]="['/recipe/displayMeal', meal._id]"><mat-icon>remove_red_eye</mat-icon></a>
+            <a mat-raised-button color="primary" *ngIf="meal.state" [routerLink]="['/recipe/displayMeal', meal._id]">
+                <mat-icon>remove_red_eye</mat-icon>
+            </a>
         </mat-card-actions>
+
+        <mat-list *ngIf="!meal.state">
+            <div *ngFor="let missingIngredient of meal.missingIngredients">
+                <mat-list-item>
+                    <div>
+                        {{missingIngredient.ingredientName}} - {{missingIngredient.quantity}} {{missingIngredient.unitOfMeasure}}
+                    </div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </div>
+        </mat-list>
     </mat-card>
 </mat-accordion>
 

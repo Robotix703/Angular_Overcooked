@@ -10,7 +10,12 @@ export interface PrettyMeal {
     numberOfLunch: number,
     imagePath: string,
     state: boolean,
-    background: string
+    background: string,
+    missingIngredients: {
+        ingredientName: string,
+        quantity: number,
+        unitOfMeasure: string
+    }[]
 }
 
 export interface stateMeal {
