@@ -12,8 +12,6 @@ const URL_BACKEND = environment.apiURL + "ingredient/";
 
 export class IngredientService {
 
-    public ingredientLimit = -1;
-
     constructor(private http: HttpClient, private router: Router) { }
 
     addIngredient(name: string, consumable: boolean, image: File, category: string, unitOfMeasure: string, shelfLife: number | null, freezable: boolean) {
@@ -32,8 +30,8 @@ export class IngredientService {
             });
     }
 
-    getIngredients(ingredientLimit: number = this.ingredientLimit) {
-        return this.http.get<{ ingredients: Ingredient[], count: number }>(URL_BACKEND + '?limit=' + ingredientLimit);
+    getIngredients(searchName: string, pageSize: number, currentPage: number) {
+        return this.http.get<{ ingredients: Ingredient[], count: number }>(URL_BACKEND + `?name=${searchName}&pageSize=${pageSize}&currentPage=${currentPage}`);
     }
 
     getIngredientsByName(name: string) {

@@ -5,18 +5,12 @@
             <input matInput placeholder="Recherche" id="search" (keyup)="search($event)">
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
-    
-        <mat-form-field appearance="fill" style="margin: 1rem;">
-            <mat-label>Nombre d'items</mat-label>
-            <mat-select (selectionChange)="updateLimit($event.value)" [(value)]="ingredientLimit">
-                <mat-option value="25">25</mat-option>
-                <mat-option value="50">50</mat-option>
-                <mat-option value="100" default>100</mat-option>
-                <mat-option value="150">150</mat-option>
-            </mat-select>
-        </mat-form-field>
-    
+
         <a mat-raised-button color="primary" routerLink="/ingredient/create" style="margin: 1rem;">Ajouter Ingrédient</a>
+
+        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+            style="background-color: #303030;" (page)="getIngredientsData($event)">
+        </mat-paginator>
     </div>
 
     <mat-accordion *ngIf="ingredients.length > 0">
@@ -42,8 +36,10 @@
             <mat-card-actions>
                 <a mat-raised-button color="primary" [routerLink]="['/ingredient/edit', ingredient._id]">
                     <mat-icon>edit</mat-icon>
-                  </a>
-                <button mat-raised-button color="warn" (click)="onDelete(ingredient)"><mat-icon>delete</mat-icon></button>
+                </a>
+                <button mat-raised-button color="warn" (click)="onDelete(ingredient)">
+                    <mat-icon>delete</mat-icon>
+                </button>
             </mat-card-actions>
         </mat-card>
     </mat-accordion>
