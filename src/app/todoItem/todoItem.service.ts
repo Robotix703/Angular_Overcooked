@@ -13,7 +13,7 @@ export class TodoItemService {
     constructor(private http: HttpClient, private router: Router) { }
 
     getTodoItem(){
-        return this.http.get<TodoItem[]>(URL_BACKEND);
+        return this.http.get<{todoItems: TodoItem[], count: number}>(URL_BACKEND);
     }
 
     deleteTodoItem(todoItemID: string){

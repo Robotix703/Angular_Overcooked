@@ -47,8 +47,8 @@ export class TodoItemListComponent implements OnInit, OnDestroy {
 
     getTodoItems(){
         this.TodoItemService.getTodoItem()
-        .subscribe((result: TodoItem[]) => {
-            this.todoItems = result;
+        .subscribe((result: {todoItems: TodoItem[], count: number}) => {
+            this.todoItems = result.todoItems;
         });
     }
 }
