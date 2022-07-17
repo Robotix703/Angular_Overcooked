@@ -75,10 +75,10 @@ export class RecipeDisplayComponent implements OnInit, OnDestroy {
                     }
                 });
 
-                this.recipeService.getIngredientListForRecipe(mealID)
+                this.recipeService.getIngredientListForRecipe("", mealID)
                 .subscribe((result) => {
                     this.splitIngredientList(result);
-                })
+                });
             }
         });
     }

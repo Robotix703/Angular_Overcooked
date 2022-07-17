@@ -16,13 +16,12 @@ export class ErrorInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(
             catchError((error: HttpErrorResponse) => {
 
-                let errorMessage = "Une erreur inconnu est arrivé";
-
-                if(error.error.message){
-                    errorMessage = error.error.message;
-                }
-
-                this.dialog.open(ErrorComponent, {data: {message: errorMessage}});
+                this.dialog.open(ErrorComponent, {
+                    data: {
+                        message: error.error ? error.error : "Une erreur inconnu est arrivé",
+                        login: error.error ? (error.error.split(' ')[0] === "Auth") : false
+                    }
+                });
 
                 return throwError(error);
             })

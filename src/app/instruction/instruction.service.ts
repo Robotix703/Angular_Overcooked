@@ -45,7 +45,7 @@ export class InstructionService {
         return this.http.get<PrettyInstruction>(URL_BACKEND + `byID?instructionID=${instructionID}`);
     }
 
-    updateInstruction(instructionID: string, text: string, ingredients: {ingredientName: string, quantity: number}[], order: number, cookingTime: number = 0){
+    updateInstruction(instructionID: string, text: string, recipeID: string, ingredients: {ingredientName: string, quantity: number}[], order: number, cookingTime: number = 0){
         let instructionData : any = {
             text: text,
             ingredients: ingredients,
@@ -55,7 +55,7 @@ export class InstructionService {
 
         this.http.put<string>(URL_BACKEND + instructionID, instructionData)
             .subscribe((responseData: string) => {
-                this.router.navigate(["/"]);
+                this.router.navigate(["/instruction/list/" + recipeID]);
             });
     }
 }

@@ -15,9 +15,10 @@ export interface Composition {
 }
 
 export interface PrettyInstruction {
-    _id: string
-    text: string
-    composition: Composition[]
-    order: number
-    cookingTime: number
+    _id: string,
+    text: string,
+    recipeID: string,
+    composition: Composition[],
+    order: number,
+    cookingTime: number | null
 }

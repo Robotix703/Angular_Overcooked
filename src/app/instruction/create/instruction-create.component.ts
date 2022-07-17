@@ -70,6 +70,8 @@ export class InstructionCreateComponent implements OnInit {
                             order: result.order
                         });
 
+                        this.recipeID = result.recipeID;
+
                         for (let i = 0; i < result.composition.length; i++) {
                             this.ingredients.push({
                                 ingredientName: result.composition[i].name + " - " + result.composition[i].unitOfMeasure,
@@ -134,6 +136,7 @@ export class InstructionCreateComponent implements OnInit {
             this.InstructionService.updateInstruction(
                 this.instructionID,
                 this.productForm.value.text,
+                this.recipeID,
                 simpleIngredients,
                 this.productForm.value.order,
                 this.productForm.value.cookingTime
