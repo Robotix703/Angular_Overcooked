@@ -83,6 +83,8 @@ export class PantryCreateComponent implements OnInit {
   }
 
   onSavePantry() {
+    if(!this.ingredientAutoComplete.value) return;
+
     if (this.editMode) {
       this.PantryService.updatePantry(
         this.pantryID,
