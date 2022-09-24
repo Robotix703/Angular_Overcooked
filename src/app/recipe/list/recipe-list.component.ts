@@ -7,6 +7,10 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { categoriesRecipe, Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 
+import { MealService } from "../../meal/meal.service";
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from 'src/app/snackBar/snack-bar.component';
+
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
@@ -32,7 +36,12 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   private authStatusSub: Subscription = new Subscription();
 
-  constructor(private recipeService: RecipeService, private authService: AuthService, public route: ActivatedRoute) { }
+  constructor(
+    private recipeService: RecipeService,
+    private authService: AuthService,
+    public route: ActivatedRoute,
+    public MealService: MealService,
+    public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getRecipes("", "", this.pageSize, this.currentPage);
@@ -51,6 +60,16 @@ export class RecipeListComponent implements OnInit, OnDestroy {
         this.getRecipes(this.selectedCategory, this.searchName, this.pageSize, this.currentPage);
       });
     }
+  }
+
+  addMeal(recipeID: string, numberOfLunch: number) {
+    this.MealService.createMeal(recipeID, numberOfLunch, () => {this.openSnackBar();});
+  }
+
+  openSnackBar() {
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 500,
+    });
   }
 
   displayRecipes(recipes: Recipe[], count: number) {

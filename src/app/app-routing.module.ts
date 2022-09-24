@@ -13,7 +13,6 @@ import { InstructionCreateComponent } from './instruction/create/instruction-cre
 import { RecipeCreateComponent } from './recipe/create/recipe-create.component';
 import { RecipeListComponent } from './recipe/list/recipe-list.component';
 import { InstructionListComponent } from './instruction/list/instruction-list.component';
-import { MealCreateComponent } from './meal/create/meal-create.component';
 import { MealListComponent } from './meal/list/meal-list.component';
 import { PantryListComponent } from './pantry/list/pantry-list.component';
 import { PantryCreateComponent } from './pantry/create/pantry-create.component';
@@ -84,9 +83,6 @@ const routes: Routes = [
   {
     path:'meal',
     children: [
-      {
-        path:'create', component: MealCreateComponent
-      },
       {
         path:'list', component: MealListComponent
       }

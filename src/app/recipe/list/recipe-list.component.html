@@ -57,6 +57,7 @@
       <a mat-raised-button color="primary" [routerLink]="['/recipe/display', recipe._id]">
         <mat-icon>remove_red_eye</mat-icon>
       </a>
+      <a mat-raised-button color="primary" (click)="addMeal(recipe._id, recipe.numberOfLunch)">Ajouter</a>
       <button mat-raised-button color="warn" (click)="onDelete(recipe._id)">
         <mat-icon>delete</mat-icon>
       </button>
