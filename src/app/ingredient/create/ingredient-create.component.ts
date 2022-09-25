@@ -62,7 +62,9 @@ export class IngredientCreateComponent implements OnInit {
       shelfLife: new FormControl(null, {
         validators: []
       }),
-      image: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] }),
+      image: new FormControl(null, {
+        validators: [Validators.required], asyncValidators: [mimeType]
+      }),
       freezable: new FormControl(null, {
         validators: []
       })
@@ -82,29 +84,36 @@ export class IngredientCreateComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  onSavePost() {
+  async onSavePost() {
     if (this.formulaire.invalid) return;
 
-    if (this.editMode) {
-      this.IngredientService.updateIngredient(
-        this.ingredientID,
-        this.formulaire.value.name,
-        this.formulaire.value.consumable ? this.formulaire.value.consumable : false,
-        this.formulaire.value.category,
-        this.formulaire.value.unitOfMeasure,
-        this.formulaire.value.shelfLife,
-        this.formulaire.value.freezable ? this.formulaire.value.freezable : false
-      )
-    } else {
-      this.IngredientService.addIngredient(
-        this.formulaire.value.name,
-        this.formulaire.value.consumable ? this.formulaire.value.consumable : false,
-        this.formulaire.value.image,
-        this.formulaire.value.category,
-        this.formulaire.value.unitOfMeasure,
-        this.formulaire.value.shelfLife,
-        this.formulaire.value.freezable ? this.formulaire.value.freezable : false
-      );
-    }
+    this.IngredientService.duplicateIngredientCheck(this.formulaire.value.name).subscribe((isDuplicate: boolean) => {
+      if(isDuplicate) {
+        alert("L'ingrédient existe déjà");
+        return;
+      }
+
+      if (this.editMode) {
+        this.IngredientService.updateIngredient(
+          this.ingredientID,
+          this.formulaire.value.name,
+          this.formulaire.value.consumable ? this.formulaire.value.consumable : false,
+          this.formulaire.value.category,
+          this.formulaire.value.unitOfMeasure,
+          this.formulaire.value.shelfLife,
+          this.formulaire.value.freezable ? this.formulaire.value.freezable : false
+        )
+      } else {
+        this.IngredientService.addIngredient(
+          this.formulaire.value.name,
+          this.formulaire.value.consumable ? this.formulaire.value.consumable : false,
+          this.formulaire.value.image,
+          this.formulaire.value.category,
+          this.formulaire.value.unitOfMeasure,
+          this.formulaire.value.shelfLife,
+          this.formulaire.value.freezable ? this.formulaire.value.freezable : false
+        );
+      }
+    })
   }
 }
