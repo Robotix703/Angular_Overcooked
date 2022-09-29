@@ -56,5 +56,6 @@ export class IngredientListComponent implements OnInit {
 
   changeLimit(limit: number){
     this.limit = limit;
+    this.getIngredients(this.searchName, this.limit);
   }
 }
