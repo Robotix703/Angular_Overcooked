@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { FormControl, FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { Ingredient } from '../ingredient.model';
@@ -13,10 +14,8 @@ import { IngredientService } from '../ingredient.service';
 export class IngredientListComponent implements OnInit {
 
   ingredients: Ingredient[] = [];
-  pageSizeOptions: number[] = [10, 25, 50, 100];
-  pageSize: number = 10;
+  limit: number = 10;
   length: number = 0;
-  currentPage: number = 0;
   searchName: string = "";
 
   constructor(
@@ -24,36 +23,39 @@ export class IngredientListComponent implements OnInit {
     public IngredientService: IngredientService) { }
 
   ngOnInit() {
-    this.getIngredients(this.searchName, this.pageSize, this.currentPage);
+    this.getIngredients(this.searchName, this.limit);
   }
 
   onDelete(ingredient: Ingredient) {
     if (this.clickMethod(ingredient.name)) {
       this.IngredientService.deleteIngredient(ingredient._id)
       .subscribe(() => {
-        this.getIngredients(this.searchName, this.pageSize, this.currentPage);
+        this.getIngredients(this.searchName, this.limit);
       });
     }
   }
 
   getIngredientsData(event?: PageEvent) {
-    this.currentPage = event!.pageIndex;
-    this.getIngredients(this.searchName, this.pageSize, this.currentPage);
+    this.getIngredients(this.searchName, this.limit);
   }
 
   search(event: any){
     this.searchName = event.target.value;
-    this.getIngredients(this.searchName, this.pageSize, this.currentPage);
+    this.getIngredients(this.searchName, this.limit);
   }
 
   clickMethod(name: string) {
     return confirm("Confirmez la suppression de " + name);
   }
 
-  getIngredients(searchName: string, pageSize: number, pageIndex: number){
-    this.IngredientService.getIngredients(searchName, pageSize, pageIndex)
+  getIngredients(searchName: string, limit: number){
+    this.IngredientService.getIngredients(searchName, limit)
       .subscribe((fetchedData) => {
         this.ingredients = fetchedData.ingredients;
       });
+  }
+
+  changeLimit(limit: number){
+    this.limit = limit;
   }
 }

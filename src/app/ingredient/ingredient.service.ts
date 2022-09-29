@@ -30,8 +30,8 @@ export class IngredientService {
       });
   }
 
-  getIngredients(searchName: string, pageSize: number, currentPage: number) {
-    return this.http.get<{ ingredients: Ingredient[], count: number }>(URL_BACKEND + `?name=${searchName}&pageSize=${pageSize}&currentPage=${currentPage}`);
+  getIngredients(searchName: string, limit: number) {
+    return this.http.get<{ ingredients: Ingredient[], count: number }>(URL_BACKEND + `?name=${searchName}&limit=${limit}`);
   }
 
   getIngredientsByName(name: string) {

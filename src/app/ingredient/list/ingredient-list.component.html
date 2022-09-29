@@ -1,54 +1,59 @@
 <mat-drawer-container class="container" autosize>
-    <div style="text-align: center;">
-        <mat-form-field appearance="fill">
-            <mat-label>Nom</mat-label>
-            <input matInput placeholder="Recherche" id="search" (keyup)="search($event)">
-            <mat-icon matSuffix>search</mat-icon>
-        </mat-form-field>
+  <div style="text-align: center;">
+    <mat-form-field appearance="fill">
+      <mat-label>Nom</mat-label>
+      <input matInput placeholder="Recherche" id="search" (keyup)="search($event)">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
 
-        <a mat-raised-button color="primary" routerLink="/ingredient/create" style="margin: 1rem;">Ajouter Ingrédient</a>
+    <mat-form-field appearance="fill" style="margin-left: 1rem;">
+      <mat-label>Limite</mat-label>
+      <mat-select (selectionChange)="changeLimit($event.value)">
+        <mat-option value="10">10</mat-option>
+        <mat-option value="25">25</mat-option>
+        <mat-option value="50">50</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-        <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
-            style="background-color: #303030;" (page)="getIngredientsData($event)">
-        </mat-paginator>
+    <a mat-raised-button color="primary" routerLink="/ingredient/create" style="margin: 1rem;">Ajouter Ingrédient</a>
+  </div>
+
+  <mat-accordion *ngIf="ingredients.length > 0">
+    <mat-card *ngFor="let ingredient of ingredients">
+      <!--Name-->
+      <mat-card-title style="margin-bottom: 1rem;">
+        {{ ingredient.name }}
+      </mat-card-title>
+      <!--Image-->
+      <div class="ingredient-image">
+        <img [src]="ingredient.imagePath" [alt]="ingredient.name">
+      </div>
+      <!--Consumable-->
+      <mat-dialog-content>
+        <h3 *ngIf="ingredient.consumable">Consommé avec la recette</h3>
+        <h3>Type : {{ingredient.category}}</h3>
+        <h3>Unité : {{ingredient.unitOfMeasure}}</h3>
+        <h3 *ngIf="ingredient.shelfLife > 0">Durée de conservation : {{ingredient.shelfLife}}</h3>
+        <div *ngIf="ingredient.freezable"><img src="assets/snowflake-solid.svg" width="30"></div>
+      </mat-dialog-content>
+
+      <hr>
+      <mat-card-actions>
+        <a mat-raised-button color="primary" [routerLink]="['/ingredient/edit', ingredient._id]">
+          <mat-icon>edit</mat-icon>
+        </a>
+        <button mat-raised-button color="warn" (click)="onDelete(ingredient)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-accordion>
+
+  <p class="info-text mat-body-1" *ngIf="ingredients.length == 0">Aucun ingrédient</p>
+
+  <mat-accordion *ngIf="ingredients.length <= 12">
+    <div style="visibility: hidden;">
+      <p style="height: 300px;">REMPLISSAGE</p>
     </div>
-
-    <mat-accordion *ngIf="ingredients.length > 0">
-        <mat-card *ngFor="let ingredient of ingredients">
-            <!--Name-->
-            <mat-card-title style="margin-bottom: 1rem;">
-                {{ ingredient.name }}
-            </mat-card-title>
-            <!--Image-->
-            <div class="ingredient-image">
-                <img [src]="ingredient.imagePath" [alt]="ingredient.name">
-            </div>
-            <!--Consumable-->
-            <mat-dialog-content>
-                <h3 *ngIf="ingredient.consumable">Consommé avec la recette</h3>
-                <h3>Type : {{ingredient.category}}</h3>
-                <h3>Unité : {{ingredient.unitOfMeasure}}</h3>
-                <h3 *ngIf="ingredient.shelfLife > 0">Durée de conservation : {{ingredient.shelfLife}}</h3>
-                <div *ngIf="ingredient.freezable"><img src="assets/snowflake-solid.svg" width="30"></div>
-            </mat-dialog-content>
-
-            <hr>
-            <mat-card-actions>
-                <a mat-raised-button color="primary" [routerLink]="['/ingredient/edit', ingredient._id]">
-                    <mat-icon>edit</mat-icon>
-                </a>
-                <button mat-raised-button color="warn" (click)="onDelete(ingredient)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </mat-card-actions>
-        </mat-card>
-    </mat-accordion>
-
-    <p class="info-text mat-body-1" *ngIf="ingredients.length == 0">Aucun ingrédient</p>
-
-    <mat-accordion *ngIf="ingredients.length <= 12">
-        <div style="visibility: hidden;">
-            <p style="height: 300px;">REMPLISSAGE</p>
-        </div>
-    </mat-accordion>
+  </mat-accordion>
 </mat-drawer-container>
