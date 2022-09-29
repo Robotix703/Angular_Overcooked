@@ -8,15 +8,15 @@ import { IngredientCreateComponent } from './create/ingredient-create.component'
 import { IngredientListComponent } from './list/ingredient-list.component';
 
 @NgModule({
-    declarations: [
-        IngredientListComponent,
-        IngredientCreateComponent
-    ],
-    imports: [
-        CommonModule,
-        AngularMaterialModule,
-        ReactiveFormsModule,
-        RouterModule
-    ]
+  declarations: [
+    IngredientListComponent,
+    IngredientCreateComponent
+  ],
+  imports: [
+    CommonModule,
+    AngularMaterialModule,
+    ReactiveFormsModule,
+    RouterModule
+  ]
 })
-export class IngredientModule {}
+export class IngredientModule { }

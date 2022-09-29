@@ -17,16 +17,6 @@
       <mat-checkbox formControlName='freezable' style="margin-bottom: 1rem; margin-left: 1rem;">Congelable
       </mat-checkbox>
 
-      <!--Category-->
-      <mat-form-field appearance="fill">
-        <mat-label>Catégorie</mat-label>
-        <mat-select formControlName='category'>
-          <mat-option *ngFor="let categoryDisplayed of ingredientCategories" [value]="categoryDisplayed">
-            {{categoryDisplayed}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
       <!--Unit of measure-->
       <mat-form-field appearance="fill">
         <mat-label>Unité de mesure</mat-label>

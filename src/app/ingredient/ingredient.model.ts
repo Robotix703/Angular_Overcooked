@@ -3,7 +3,6 @@ export interface Ingredient {
   name: string
   imagePath: string
   consumable: boolean,
-  category: string,
   unitOfMeasure: string,
   shelfLife: number,
   freezable: boolean

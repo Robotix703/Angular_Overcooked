@@ -14,12 +14,11 @@ export class IngredientService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  addIngredient(name: string, consumable: boolean, image: File, category: string, unitOfMeasure: string, shelfLife: number | null, freezable: boolean) {
+  addIngredient(name: string, consumable: boolean, image: File, unitOfMeasure: string, shelfLife: number | null, freezable: boolean) {
     const ingredientData = new FormData();
     ingredientData.append("name", name);
     ingredientData.append("consumable", consumable.toString());
     ingredientData.append("image", image, name);
-    ingredientData.append("category", category);
     ingredientData.append("unitOfMeasure", unitOfMeasure);
     ingredientData.append("shelfLife", shelfLife ? shelfLife.toString() : "");
     ingredientData.append("freezable", freezable.toString());
@@ -54,11 +53,10 @@ export class IngredientService {
     return this.http.get<string[]>(URL_BACKEND + "forAutocomplete");
   }
 
-  updateIngredient(ingredientID: string, name: string, consumable: boolean, category: string, unitOfMeasure: string, shelfLife: number | null, freezable: boolean) {
+  updateIngredient(ingredientID: string, name: string, consumable: boolean, unitOfMeasure: string, shelfLife: number | null, freezable: boolean) {
     this.http.put<string>(URL_BACKEND + ingredientID, {
       name: name,
       consumable: consumable,
-      category: category,
       unitOfMeasure: unitOfMeasure,
       shelfLife: shelfLife,
       freezable: freezable

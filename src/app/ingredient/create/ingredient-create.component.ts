@@ -36,7 +36,6 @@ export class IngredientCreateComponent implements OnInit {
             this.formulaire.setValue({
               name: result.name,
               consumable: result.consumable,
-              category: result.category,
               unitOfMeasure: result.unitOfMeasure,
               image: result.imagePath,
               shelfLife: result.shelfLife ?? null,
@@ -98,7 +97,6 @@ export class IngredientCreateComponent implements OnInit {
           this.ingredientID,
           this.formulaire.value.name,
           this.formulaire.value.consumable ? this.formulaire.value.consumable : false,
-          this.formulaire.value.category,
           this.formulaire.value.unitOfMeasure,
           this.formulaire.value.shelfLife,
           this.formulaire.value.freezable ? this.formulaire.value.freezable : false
@@ -108,7 +106,6 @@ export class IngredientCreateComponent implements OnInit {
           this.formulaire.value.name,
           this.formulaire.value.consumable ? this.formulaire.value.consumable : false,
           this.formulaire.value.image,
-          this.formulaire.value.category,
           this.formulaire.value.unitOfMeasure,
           this.formulaire.value.shelfLife,
           this.formulaire.value.freezable ? this.formulaire.value.freezable : false
