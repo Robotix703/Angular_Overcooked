@@ -52,9 +52,6 @@ export class IngredientCreateComponent implements OnInit {
       consumable: new FormControl(null, {
         validators: []
       }),
-      category: new FormControl(null, {
-        validators: [Validators.required]
-      }),
       unitOfMeasure: new FormControl(null, {
         validators: [Validators.required]
       }),
@@ -84,9 +81,11 @@ export class IngredientCreateComponent implements OnInit {
   }
 
   async onSavePost() {
+    console.log(this.formulaire.invalid)
     if (this.formulaire.invalid) return;
 
     this.IngredientService.duplicateIngredientCheck(this.formulaire.value.name).subscribe((isDuplicate: boolean) => {
+      console.log(isDuplicate)
       if(isDuplicate) {
         alert("L'ingrédient existe déjà");
         return;
