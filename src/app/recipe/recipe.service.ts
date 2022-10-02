@@ -23,9 +23,9 @@ export class RecipeService {
     recipeData.append("duration", duration.toString());
     if (score != 0) recipeData.append("score", score.toString());
 
-    this.http.post<Recipe>(URL_BACKEND, recipeData)
-      .subscribe((responseData: Recipe) => {
-        this.router.navigate(["/recipe/list"]);
+    this.http.post<{id: string, recipe: Recipe}>(URL_BACKEND, recipeData)
+      .subscribe((responseData: {id: string, recipe: Recipe}) => {
+        this.router.navigate(["/instruction/list/" + responseData.recipe._id]);
       });
   }
 
