@@ -34,3 +34,7 @@ mat-accordion {
   margin-top: 1rem;
   color: rgb(14, 180, 102);
 }
+
+.mat-list-item {
+  height: min-content !important;
+}

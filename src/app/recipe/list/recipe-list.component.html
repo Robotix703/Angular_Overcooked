@@ -23,7 +23,7 @@
 </div>
 
 <mat-accordion *ngIf="recipes.length > 0 && !isLoading">
-  <mat-card *ngFor="let recipe of recipes" [ngStyle]="{'background-color': recipe.category == categoriesRecipe[0]? 'blue' : recipe.category == categoriesRecipe[1]? 'green' : 'red'}">
+  <mat-card *ngFor="let recipe of recipes" [ngStyle]="{'background-color': recipe.category == categoriesRecipe[0]? 'blue' : recipe.category == categoriesRecipe[1]? '#d87600' : 'purple'}">
     <mat-card-header>
       <mat-card-title>
         {{ recipe.title }}
