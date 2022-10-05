@@ -22,103 +22,103 @@ import { RecipeDisplayComponent } from './recipe/display/recipe-display.componen
 const routes: Routes = [
   { path: '', component: DashboardComponent },
   {
-    path:'auth',
+    path: 'auth',
     children: [
       {
-        path:'login', component: LoginComponent
+        path: 'login', component: LoginComponent
       },
       {
-        path:'signup', component: SignupComponent
+        path: 'signup', component: SignupComponent
       }
     ]
   },
   {
-    path:'ingredient',
+    path: 'ingredient',
     children: [
       {
-        path:'create', component: IngredientCreateComponent
+        path: 'create', component: IngredientCreateComponent
       },
       {
-        path:'list', component: IngredientListComponent
+        path: '', component: IngredientListComponent
       },
       {
-        path:'edit/:ingredientID', component: IngredientCreateComponent
+        path: 'edit/:ingredientID', component: IngredientCreateComponent
       }
     ]
   },
   {
-    path:'instruction',
+    path: 'instruction',
     children: [
       {
-        path:'create/:recipeID', component: InstructionCreateComponent
+        path: 'create/:recipeID', component: InstructionCreateComponent
       },
       {
-        path:'list/:recipeID', component: InstructionListComponent
+        path: 'list/:recipeID', component: InstructionListComponent
       },
       {
-        path:'edit/:instructionID', component: InstructionCreateComponent
+        path: 'edit/:instructionID', component: InstructionCreateComponent
       }
     ]
   },
   {
-    path:'recipe',
+    path: 'recipe',
     children: [
       {
-        path:'create', component: RecipeCreateComponent
+        path: 'create', component: RecipeCreateComponent
       },
       {
-        path:'list', component: RecipeListComponent
+        path: '', component: RecipeListComponent
       },
       {
-        path:'edit/:recipeID', component: RecipeCreateComponent
+        path: 'edit/:recipeID', component: RecipeCreateComponent
       },
       {
-        path:'display/:recipeID', component: RecipeDisplayComponent
+        path: 'display/:recipeID', component: RecipeDisplayComponent
       },
       {
-        path:'displayMeal/:mealID', component: RecipeDisplayComponent
+        path: 'displayMeal/:mealID', component: RecipeDisplayComponent
       }
     ]
   },
   {
-    path:'meal',
+    path: 'meal',
     children: [
       {
-        path:'list', component: MealListComponent
+        path: '', component: MealListComponent
       }
     ]
   },
   {
-    path:'pantry',
+    path: 'pantry',
     children: [
       {
-        path:'list', component: PantryListComponent
+        path: '', component: PantryListComponent
       },
       {
-        path:'create/:ingredientID', component: PantryCreateComponent
+        path: 'create/:ingredientID', component: PantryCreateComponent
       },
       {
-        path:'create', component: PantryCreateComponent
+        path: 'create', component: PantryCreateComponent
       },
       {
-        path:'edit/:pantryID', component: PantryCreateComponent
+        path: 'edit/:pantryID', component: PantryCreateComponent
       }
     ]
   },
   {
-    path:'todoItem',
+    path: 'todoItem',
     children: [
       {
-        path:'list', component: TodoItemListComponent
+        path: '', component: TodoItemListComponent
       }
     ]
   }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule],
-    providers: [AuthGuard]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule { }
