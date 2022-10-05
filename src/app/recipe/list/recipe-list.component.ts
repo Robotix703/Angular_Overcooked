@@ -63,7 +63,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   addMeal(recipeID: string, numberOfLunch: number) {
-    this.MealService.createMeal(recipeID, numberOfLunch, () => {this.openSnackBar();});
+    this.MealService.createMeal(recipeID, numberOfLunch, () => { this.openSnackBar(); });
   }
 
   openSnackBar() {
@@ -92,18 +92,30 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this.currentPage = event!.pageIndex;
   }
 
-  search(event: any){
+  search(event: any) {
     this.searchName = event.target.value;
     this.getRecipes(this.selectedCategory, event.target.value, this.pageSize, this.currentPage);
   }
 
-  getRecipes(category: string, name: string, pageSize: number, currentPage: number){
+  getRecipes(category: string, name: string, pageSize: number, currentPage: number) {
     this.recipeService.getFilteredRecipe(category, name, pageSize, currentPage).subscribe((data: { recipes: Recipe[], count: number }) => {
+      this.formatDate(data.recipes);
       this.displayRecipes(data.recipes, data.count);
     });
   }
 
-  selectCategory(category: any){
+  formatDate(recipes: Recipe[]): void {
+    for (let recipe of recipes) {
+      recipe.lastCooked = (recipe.lastCooked) ? new Date(recipe.lastCooked).toLocaleString("fr-FR", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+      }) : undefined;
+    }
+    //return recipes;
+  }
+
+  selectCategory(category: any) {
     this.selectedCategory = category;
     this.getRecipes(this.selectedCategory, this.searchName, this.pageSize, this.currentPage);
   }
