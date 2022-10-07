@@ -38,3 +38,9 @@ mat-accordion {
 .mat-list-item {
   height: min-content !important;
 }
+
+a.recipeLink{
+  color: #fff;
+  text-decoration: none;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

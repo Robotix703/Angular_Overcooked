@@ -6,7 +6,7 @@
   <mat-card *ngFor="let meal of meals" [ngStyle]="{'background-color': meal.background}">
     <mat-card-header>
       <mat-card-title>
-        {{ meal.title }}
+        <a class="recipeLink" [routerLink]="['/recipe/displayMeal', meal._id]">{{ meal.title }}</a>
       </mat-card-title>
 
       <mat-card-subtitle>
@@ -30,9 +30,6 @@
 
     <mat-card-actions>
       <a mat-raised-button color="warn" *ngIf="meal.state" (click)="consume(meal._id)">Consommer</a>
-      <a mat-raised-button color="primary" *ngIf="meal.state" [routerLink]="['/recipe/displayMeal', meal._id]">
-        <mat-icon>remove_red_eye</mat-icon>
-      </a>
     </mat-card-actions>
   </mat-card>
 </mat-accordion>
