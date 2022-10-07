@@ -45,6 +45,10 @@ export class PantryService {
     return this.http.post<{ result: string }>(URL_BACKEND + "refreshTodoist", {});
   }
 
+  buyAgain(ingredientID: string, ingredientName: string, quantity: number, pantryID: string) {
+    return this.http.post<{ result: string }>(URL_BACKEND + "buyAgain", {ingredientID: ingredientID, ingredientName: ingredientName, quantity: quantity, pantryID: pantryID});
+  }
+
   updatePantry(pantryID: string, ingredientName: string, quantity: number, expirationDate: Date | null, frozen: boolean) {
     this.http.put<string>(URL_BACKEND + pantryID, {
       ingredientName: ingredientName,
