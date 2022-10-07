@@ -25,7 +25,7 @@ export class IngredientService {
 
     this.http.post<Ingredient>(URL_BACKEND, ingredientData)
       .subscribe((responseData: Ingredient) => {
-        this.router.navigate(["/ingredient/list"]);
+        this.router.navigate(["/ingredient"]);
       });
   }
 
@@ -62,7 +62,7 @@ export class IngredientService {
       freezable: freezable
     })
       .subscribe((result: string) => {
-        this.router.navigate(["/ingredient/list"]);
+        this.router.navigate(["/ingredient"]);
       })
   }
 

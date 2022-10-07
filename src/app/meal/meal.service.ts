@@ -16,7 +16,7 @@ export class MealService {
   createMeal(recipeID: string, numberOfLunchPlanned: number, callback?: Function) {
     this.http.post<Meal>(URL_BACKEND, { recipeID: recipeID, numberOfLunchPlanned: numberOfLunchPlanned.toString() })
       .subscribe((responseData: Meal) => {
-        if(!callback) this.router.navigate(["/meal/list"]);
+        if(!callback) this.router.navigate(["/meal"]);
         else callback();
       });
   }

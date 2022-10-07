@@ -29,7 +29,7 @@ export class PantryService {
         frozen: frozen
       })
       .subscribe((responseData: Pantry) => {
-        this.router.navigate(["/pantry/list"]);
+        this.router.navigate(["/pantry"]);
       });
   }
 
@@ -53,11 +53,11 @@ export class PantryService {
     this.http.put<string>(URL_BACKEND + pantryID, {
       ingredientName: ingredientName,
       quantity: quantity,
-      expirationDate: expirationDate?.toLocaleDateString("fr-FR", { timeZone: "Europe/Paris" }),
+      expirationDate: expirationDate? new Date(expirationDate).toLocaleDateString("fr-FR", { timeZone: "Europe/Paris" }) : null,
       frozen: frozen
     })
       .subscribe((result) => {
-        this.router.navigate(["/pantry/list"]);
+        this.router.navigate(["/pantry"]);
       })
   }
 }

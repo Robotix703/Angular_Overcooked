@@ -50,7 +50,7 @@ export class RecipeService {
       score: score
     })
       .subscribe((result) => {
-        this.router.navigate(["/recipe/list"]);
+        this.router.navigate(["/recipe"]);
       })
   }
 
