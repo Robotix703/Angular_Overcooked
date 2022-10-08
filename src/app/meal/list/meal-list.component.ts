@@ -52,6 +52,12 @@ export class MealListComponent implements OnInit, OnDestroy {
     });
   }
 
+  setHighPrio(mealID: string){
+    this.MealService.setHighPrio(mealID).subscribe((result) => {
+      this.getMeals();
+    });
+  }
+
   getMeals() {
     this.MealService.getMealsDisplayable()
       .subscribe((data: stateMeal[]) => {
