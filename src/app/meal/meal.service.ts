@@ -33,4 +33,8 @@ export class MealService {
   consumeMeal(mealID: string) {
     return this.http.post<{ status: string }>(URL_BACKEND + "consume", { mealID: mealID });
   }
+
+  delete(mealID: string) {
+    return this.http.delete(URL_BACKEND + mealID);
+  }
 }

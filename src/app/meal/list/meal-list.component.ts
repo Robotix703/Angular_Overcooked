@@ -46,6 +46,12 @@ export class MealListComponent implements OnInit, OnDestroy {
     });
   }
 
+  delete(mealID: string){
+    this.MealService.delete(mealID).subscribe((result) => {
+      this.getMeals();
+    });
+  }
+
   getMeals() {
     this.MealService.getMealsDisplayable()
       .subscribe((data: stateMeal[]) => {
