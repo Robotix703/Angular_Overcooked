@@ -8,7 +8,7 @@
   <mat-card *ngFor="let ingredient of inventory">
     <mat-card-header>
       <mat-card-title>
-        {{ ingredient.ingredientName }}
+        <a class="pantryLink" [routerLink]="['/pantry/create', ingredient.ingredientID]">{{ ingredient.ingredientName }}</a>
       </mat-card-title>
     </mat-card-header>
 
@@ -37,7 +37,6 @@
           <mat-icon>delete</mat-icon>
         </a>
       </div>
-      <a mat-raised-button color="accent" [routerLink]="['/pantry/create', ingredient.ingredientID]">+</a>
     </mat-card-content>
   </mat-card>
 </mat-accordion>

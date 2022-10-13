@@ -22,7 +22,7 @@
     <mat-card *ngFor="let ingredient of ingredients">
       <!--Name-->
       <mat-card-title style="margin-bottom: 1rem;">
-        {{ ingredient.name }}
+        <a class="ingredientLink" [routerLink]="['/ingredient/edit', ingredient._id]">{{ ingredient.name }}</a>
       </mat-card-title>
       <!--Image-->
       <div class="ingredient-image">
@@ -38,10 +38,7 @@
 
       <hr>
       <mat-card-actions>
-        <a mat-raised-button color="primary" [routerLink]="['/ingredient/edit', ingredient._id]">
-          <mat-icon>edit</mat-icon>
-        </a>
-        <button mat-raised-button color="warn" (click)="onDelete(ingredient)">
+        <button mat-raised-button color="warn" style="float: right;" (click)="onDelete(ingredient)">
           <mat-icon>delete</mat-icon>
         </button>
       </mat-card-actions>

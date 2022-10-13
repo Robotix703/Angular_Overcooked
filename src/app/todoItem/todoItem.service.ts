@@ -10,13 +10,13 @@ const URL_BACKEND = environment.apiURL + "todoItem/";
 @Injectable({ providedIn: 'root' })
 
 export class TodoItemService {
-    constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
-    getTodoItem(){
-        return this.http.get<{todoItems: TodoItem[], count: number}>(URL_BACKEND);
-    }
+  getTodoItem() {
+    return this.http.get<{ todoItems: TodoItem[], count: number }>(URL_BACKEND);
+  }
 
-    deleteTodoItem(todoItemID: string){
-        return this.http.delete(URL_BACKEND + todoItemID);
-    }
+  deleteTodoItem(todoItemID: string) {
+    return this.http.delete(URL_BACKEND + todoItemID);
+  }
 }

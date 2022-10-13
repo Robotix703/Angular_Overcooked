@@ -34,3 +34,9 @@ mat-accordion {
   margin-top: 1rem;
   color: rgb(14, 180, 102);
 }
+
+a.recipeLink{
+  color: #fff;
+  text-decoration: none;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

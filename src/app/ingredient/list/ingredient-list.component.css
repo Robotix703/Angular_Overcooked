@@ -26,3 +26,9 @@ mat-accordion {
   max-width: 100%;
   height: auto;
 }
+
+a.ingredientLink{
+  color: #fff;
+  text-decoration: none;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

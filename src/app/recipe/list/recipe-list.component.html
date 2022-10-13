@@ -27,7 +27,7 @@
     [ngStyle]="{'background-color': recipe.category == categoriesRecipe[0]? 'blue' : recipe.category == categoriesRecipe[1]? '#d87600' : 'purple'}">
     <mat-card-header>
       <mat-card-title>
-        {{ recipe.title }}
+        <a class="recipeLink" [routerLink]="['/recipe/display', recipe._id]">{{ recipe.title }}</a>
       </mat-card-title>
 
       <mat-card-subtitle>
@@ -54,9 +54,6 @@
     <mat-card-actions>
       <a mat-raised-button color="primary" [routerLink]="['/recipe/edit', recipe._id]">
         <mat-icon>edit</mat-icon>
-      </a>
-      <a mat-raised-button color="primary" [routerLink]="['/recipe/display', recipe._id]">
-        <mat-icon>remove_red_eye</mat-icon>
       </a>
       <a mat-raised-button color="primary" (click)="addMeal(recipe._id, recipe.numberOfLunch)">Ajouter</a>
       <button mat-raised-button color="warn" (click)="onDelete(recipe._id)">

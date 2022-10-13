@@ -1,51 +1,57 @@
 .pantry-header {
-    margin: 1rem;
-    position: relative;
-    text-align: center;
+  margin: 1rem;
+  position: relative;
+  text-align: center;
 }
 
 .title {
-    text-align: center;
-    font-size: 2rem;
-    margin-top: 1rem;
-    color: rgb(14, 180, 102);
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 1rem;
+  color: rgb(14, 180, 102);
 }
 
 mat-card {
-    margin-top: 1rem;
-    width: 20rem;
-    margin: 10px;
+  margin-top: 1rem;
+  width: 20rem;
+  margin: 10px;
 }
 
 mat-accordion {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .ingredient-image {
-    max-width: 100%;
-    height: auto;
-    size: cover;
+  max-width: 100%;
+  height: auto;
+  size: cover;
 }
 
 .ingredient-image img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .onSameLine {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
-.ingredientQuantity{
-    width: 25%;
-    text-align: center;
+.ingredientQuantity {
+  width: 25%;
+  text-align: center;
 }
 
-.snowflak-filter{
-    filter: invert(39%) sepia(60%) saturate(2368%) hue-rotate(166deg) brightness(102%) contrast(101%);
+.snowflak-filter {
+  filter: invert(39%) sepia(60%) saturate(2368%) hue-rotate(166deg) brightness(102%) contrast(101%);
+}
+
+a.pantryLink {
+  color: #fff;
+  text-decoration: none;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
