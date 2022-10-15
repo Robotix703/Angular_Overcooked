@@ -24,6 +24,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   userId = null;
   isReady: boolean = false;
+  isLoading: boolean = false;
 
   pageSizeOptions: number[] = [10, 25, 50, 100];
   pageSize: number = 10;
@@ -63,7 +64,11 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   addMeal(recipeID: string, numberOfLunch: number) {
-    this.MealService.createMeal(recipeID, numberOfLunch, () => { this.openSnackBar(); });
+    this.isLoading = true;
+    this.MealService.createMeal(recipeID, numberOfLunch, () => {
+      this.openSnackBar();
+      this.isLoading = false;
+    });
   }
 
   openSnackBar() {

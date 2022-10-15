@@ -65,3 +65,5 @@
 </mat-accordion>
 
 <p class="info-text mat-body-1" *ngIf="recipes.length == 0">Aucune recette</p>
+
+<mat-spinner *ngIf="isLoading" class="loader"></mat-spinner>
