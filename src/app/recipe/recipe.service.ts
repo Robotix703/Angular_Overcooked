@@ -14,14 +14,13 @@ export class RecipeService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  addRecipe(title: string, numberOfLunch: number, image: File, category: string, duration: number, score: number = 0) {
+  addRecipe(title: string, numberOfLunch: number, image: File, category: string, duration: number) {
     const recipeData = new FormData();
     recipeData.append("title", title);
     recipeData.append("numberOfLunch", numberOfLunch.toString());
     recipeData.append("image", image, title);
     recipeData.append("category", category);
     recipeData.append("duration", duration.toString());
-    if (score != 0) recipeData.append("score", score.toString());
 
     this.http.post<{id: string, recipe: Recipe}>(URL_BACKEND, recipeData)
       .subscribe((responseData: {id: string, recipe: Recipe}) => {
@@ -41,13 +40,12 @@ export class RecipeService {
     return this.http.get<{ recipes: any, count: number }>(URL_BACKEND + `/filter?category=${category}&name=${name}&pageSize=${pageSize}&currentPage=${currentPage + 1}`);
   }
 
-  updateRecipe(recipeID: string, title: string, numberOfLunch: number, category: string, duration: number, score: number = 0) {
+  updateRecipe(recipeID: string, title: string, numberOfLunch: number, category: string, duration: number) {
     this.http.put<string>(URL_BACKEND + recipeID, {
       title: title,
       numberOfLunch: numberOfLunch,
       category: category,
-      duration: duration,
-      score: score
+      duration: duration
     })
       .subscribe((result) => {
         this.router.navigate(["/recipe"]);

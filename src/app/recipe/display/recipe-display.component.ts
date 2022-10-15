@@ -24,7 +24,6 @@ export class RecipeDisplayComponent implements OnInit, OnDestroy {
         numberOfLunch: 0,
         category: "",
         duration: 0,
-        score: 0,
         instructions: []
     };
 

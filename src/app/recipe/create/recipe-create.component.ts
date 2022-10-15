@@ -34,8 +34,7 @@ export class RecipeCreateComponent implements OnInit {
             numberOfLunch: recipe.numberOfLunch,
             image: recipe.imagePath,
             category: recipe.category,
-            duration: recipe.duration,
-            score: recipe.score
+            duration: recipe.duration
           });
         });
       }
@@ -54,9 +53,6 @@ export class RecipeCreateComponent implements OnInit {
       }),
       duration: new FormControl(null, {
         validators: [Validators.required, Validators.min(1)]
-      }),
-      score: new FormControl(null, {
-        validators: [Validators.min(0), Validators.max(10)]
       })
     });
   }
@@ -83,16 +79,14 @@ export class RecipeCreateComponent implements OnInit {
         this.formulaire.value.title,
         this.formulaire.value.numberOfLunch,
         this.formulaire.value.category,
-        this.formulaire.value.duration,
-        this.formulaire.value.score);
+        this.formulaire.value.duration);
     } else {
       this.RecipeService.addRecipe(
         this.formulaire.value.title,
         this.formulaire.value.numberOfLunch,
         this.formulaire.value.image,
         this.formulaire.value.category,
-        this.formulaire.value.duration,
-        this.formulaire.value.score);
+        this.formulaire.value.duration);
     }
   }
 }

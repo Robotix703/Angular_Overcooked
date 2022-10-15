@@ -7,7 +7,6 @@ export interface Recipe {
   imagePath: string
   category: string
   duration: number
-  score: number
   lastCooked: Date | undefined | string
 }
 
@@ -17,7 +16,6 @@ export interface PrettyRecipe {
   numberOfLunch: number
   category: string
   duration: number
-  score: number
   instructions: PrettyInstruction[]
 }
 
