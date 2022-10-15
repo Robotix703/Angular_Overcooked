@@ -19,11 +19,11 @@ import { SnackBarComponent } from 'src/app/snackBar/snack-bar.component';
 
 export class RecipeListComponent implements OnInit, OnDestroy {
 
-  isLoading = false;
   recipes: Recipe[] = [];
 
   userIsAuthenticated = false;
   userId = null;
+  isReady: boolean = false;
 
   pageSizeOptions: number[] = [10, 25, 50, 100];
   pageSize: number = 10;
@@ -75,7 +75,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   displayRecipes(recipes: Recipe[], count: number) {
     this.recipes = (recipes) ? recipes : [];
     this.length = count;
-    this.isLoading = false;
     this.currentPage = 0;
   }
 
@@ -98,9 +97,11 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   getRecipes(category: string, name: string, pageSize: number, currentPage: number) {
+    this.isReady = false;
     this.recipeService.getFilteredRecipe(category, name, pageSize, currentPage).subscribe((data: { recipes: Recipe[], count: number }) => {
       this.formatDate(data.recipes);
       this.displayRecipes(data.recipes, data.count);
+      this.isReady = true;
     });
   }
 

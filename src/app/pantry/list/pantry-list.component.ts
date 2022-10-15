@@ -17,6 +17,7 @@ export class PantryListComponent implements OnInit, OnDestroy {
 
   userIsAuthenticated = false;
   userId = null;
+  isReady: boolean = false;
 
   private authStatusSub: Subscription = new Subscription();
 
@@ -42,8 +43,10 @@ export class PantryListComponent implements OnInit, OnDestroy {
   }
 
   getIngredientInventory() {
+    this.isReady = false;
     this.PantryService.getIngredientInventory().subscribe((inventory: IngredientInventory[]) => {
       this.inventory = inventory;
+      this.isReady = true;
     });
   }
 

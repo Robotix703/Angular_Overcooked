@@ -2,7 +2,8 @@
   <h2 class="title">Liste des repas</h2>
 </div>
 
-<mat-accordion *ngIf="meals.length > 0">
+<mat-spinner *ngIf="isReady == false" class="spinner"></mat-spinner>
+<mat-accordion *ngIf="meals.length > 0 && isReady">
   <mat-card *ngFor="let meal of meals" [ngStyle]="{'background-color': meal.background}">
     <mat-card-header>
       <mat-card-title>

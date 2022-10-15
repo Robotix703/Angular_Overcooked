@@ -16,6 +16,7 @@ export class TodoItemListComponent implements OnInit, OnDestroy {
 
   userIsAuthenticated = false;
   userId = null;
+  isReady: boolean = false;
 
   todoItems: TodoItem[] = [];
 
@@ -46,9 +47,11 @@ export class TodoItemListComponent implements OnInit, OnDestroy {
   }
 
   getTodoItems() {
+    this.isReady = false;
     this.TodoItemService.getTodoItem()
       .subscribe((result: { todoItems: TodoItem[], count: number }) => {
         this.todoItems = result.todoItems;
+        this.isReady = true;
       });
   }
 }

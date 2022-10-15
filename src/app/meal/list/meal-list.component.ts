@@ -19,6 +19,8 @@ export class MealListComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   userId = null;
 
+  isReady: boolean = false;
+
   private authStatusSub: Subscription = new Subscription();
 
   constructor(private authService: AuthService, public MealService: MealService, public route: ActivatedRoute) { }
@@ -59,6 +61,7 @@ export class MealListComponent implements OnInit, OnDestroy {
   }
 
   getMeals() {
+    this.isReady = false;
     this.MealService.getMealsDisplayable()
       .subscribe((data: stateMeal[]) => {
         let mealToDisplay: PrettyMeal[] = data.map(meal => {
@@ -89,6 +92,7 @@ export class MealListComponent implements OnInit, OnDestroy {
           }
         })
         this.displayMeals(mealToDisplay);
+        this.isReady = true;
       });
   }
 }

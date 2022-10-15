@@ -4,7 +4,8 @@
   <a mat-raised-button color="link" style="margin-left: 1rem;" (click)="refreshTodoist()">Actualiser Todoist</a>
 </div>
 
-<mat-accordion *ngIf="inventory.length > 0">
+<mat-spinner *ngIf="isReady == false" class="spinner"></mat-spinner>
+<mat-accordion *ngIf="inventory.length > 0 && isReady">
   <mat-card *ngFor="let ingredient of inventory">
     <mat-card-header>
       <mat-card-title>

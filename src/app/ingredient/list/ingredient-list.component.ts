@@ -16,6 +16,7 @@ export class IngredientListComponent implements OnInit {
   limit: number = 10;
   length: number = 0;
   searchName: string = "";
+  isReady: boolean = false;
 
   constructor(
     public route: ActivatedRoute,
@@ -48,9 +49,11 @@ export class IngredientListComponent implements OnInit {
   }
 
   getIngredients(searchName: string, limit: number){
+    this.isReady = false;
     this.IngredientService.getIngredients(searchName, limit)
       .subscribe((fetchedData) => {
         this.ingredients = fetchedData.ingredients;
+        this.isReady = true;
       });
   }
 

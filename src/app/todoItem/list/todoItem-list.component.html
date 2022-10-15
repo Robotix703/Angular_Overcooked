@@ -1,4 +1,5 @@
-<mat-accordion *ngIf="todoItems.length > 0">
+<mat-spinner *ngIf="isReady == false" class="spinner"></mat-spinner>
+<mat-accordion *ngIf="todoItems.length > 0 && isReady">
   <mat-card *ngFor="let todoItem of todoItems">
     <mat-card-header>
       <mat-card-title>

@@ -44,3 +44,7 @@ a.recipeLink{
   text-decoration: none;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.mat-spinner{
+  margin: auto;
+}

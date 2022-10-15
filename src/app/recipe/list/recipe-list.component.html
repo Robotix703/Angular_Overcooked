@@ -22,7 +22,8 @@
   </mat-paginator>
 </div>
 
-<mat-accordion *ngIf="recipes.length > 0 && !isLoading">
+<mat-spinner *ngIf="isReady == false" class="spinner"></mat-spinner>
+<mat-accordion *ngIf="recipes.length > 0 && isReady">
   <mat-card *ngFor="let recipe of recipes"
     [ngStyle]="{'background-color': recipe.category == categoriesRecipe[0]? 'blue' : recipe.category == categoriesRecipe[1]? '#d87600' : 'purple'}">
     <mat-card-header>
