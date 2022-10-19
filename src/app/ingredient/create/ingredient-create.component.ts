@@ -85,8 +85,8 @@ export class IngredientCreateComponent implements OnInit {
     if (this.formulaire.invalid) return;
 
     this.IngredientService.duplicateIngredientCheck(this.formulaire.value.name).subscribe((isDuplicate: boolean) => {
-      console.log(isDuplicate)
-      if(isDuplicate) {
+
+      if(isDuplicate && !this.editMode) {
         alert("L'ingrédient existe déjà");
         return;
       }
