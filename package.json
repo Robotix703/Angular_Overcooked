@@ -1,6 +1,8 @@
 {
-  "name": "overcooked",
+  "name": "overcooked_angular",
   "version": "0.0.0",
+  "author": "SCH",
+  "homepage": "https://github.com/Robotix703/Angular_Overcooked",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
